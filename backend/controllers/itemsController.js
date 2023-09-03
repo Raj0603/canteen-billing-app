@@ -3,7 +3,7 @@ const ErrorHandler = require("../utils/errorhandler");
 const catchAsyncErrors = require("../middleware/catchAE");
 const ApiFeatures = require("../utils/apiFeatures");
 
-//Create Item --admin access
+//Create Item --Owner Access
 
 exports.createItem = catchAsyncErrors(async (req, res, next) => {
   const item = await Item.create(req.body);
@@ -20,7 +20,7 @@ exports.getAllItems = catchAsyncErrors(async (req, res) => {
   const resultPerPage = 8;
   const itemsCount = await Item.countDocuments();
 
-  const apiFeatures = new ApiFeatures(Item.find(), req.query).search();
+  const apiFeatures = new ApiFeatures(Item.find({availability:true}), req.query).search();
 
   let items = await apiFeatures.query;
 
@@ -54,7 +54,7 @@ exports.getItemDetails = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// Update Items  --admin access
+// Update Items  --Owner access
 
 exports.updateItem = catchAsyncErrors(async (req, res, next) => {
   let item = Item.findById(req.params.id);
@@ -75,7 +75,7 @@ exports.updateItem = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// Delete Item --Admin Access
+// Delete Item --Owner Access
 
 exports.deleteItem = catchAsyncErrors(async (req, res, next) => {
   const item = await Item.findById(req.params.id);
@@ -88,6 +88,6 @@ exports.deleteItem = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "Product deleted successfully",
+    message: "Item deleted successfully",
   });
 });

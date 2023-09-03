@@ -25,6 +25,7 @@ const studentSchema = new mongoose.Schema({
   },
   collegeCanteen: {
     type: String,
+    ref:"owners",
     required: [true, "Please select your college Name"],
   },
   role: {

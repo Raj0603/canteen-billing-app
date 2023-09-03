@@ -112,15 +112,10 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
     .update(req.params.token)
     .digest("hex");
 
-  console.log(resetPasswordToken)
-  console.log(req.params.token)
-
   const student = await Student.findOne({
     resetPasswordToken,
     resetPasswordExpire: { $gt: Date.now() },
   });
-
-  console.log(student)
 
   if (!student) {
     return next(
@@ -142,4 +137,104 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
   await student.save();
 
   sendToken(student, 200, res);
+});
+
+// Get student Dertails
+exports.getStudentDetails = catchAsyncErrors(async (req, res, next) => {
+  const student = await Student.findById(req.student.id);
+
+  res.status(200).json({
+    success: true,
+    student,
+  });
+});
+
+// Update Password
+
+exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
+  const student = await Student.findById(req.student.id).select("+password");
+
+  const isPasswordMatched = await student.comparePassword(req.body.oldPassword);
+
+  if (!isPasswordMatched) {
+    return next(new ErrorHandler("Old Password is incorrect", 400));
+  }
+
+  if (req.body.newPassword !== req.body.confirmPassword) {
+    return next(new ErrorHandler("Password does not matched", 400));
+  }
+
+  student.password = req.body.newPassword;
+
+  await student.save();
+
+  sendToken(student, 200, res);
+});
+
+// Update student Profile
+
+exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
+  const newstudentData = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+
+  const student = await Student.findByIdAndUpdate(req.student.id, newstudentData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+    student,
+  });
+});
+
+// Get all students --Admin
+
+exports.getAllStudents = catchAsyncErrors(async (req, res, next) => {
+  const students = await Student.find();
+
+  res.status(200).json({
+    success: true,
+    students,
+  });
+});
+
+// Get Single students --Admin
+
+exports.getSingleStudent = catchAsyncErrors(async (req, res, next) => {
+  const student = await Student.findById(req.params.id);
+
+  if (!student) {
+    return next(
+      new ErrorHandler(`student does not exist with id: ${req.params.id}`, 400)
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+    student,
+  });
+});
+
+
+// Delete student --Admin
+exports.deleteStudent = catchAsyncErrors(async (req, res, next) => {
+  const student = await Student.findById(req.params.id);
+
+
+  if (!student) {
+    return next(
+      new ErrorHandler(`student does not exist with id ${req.params.id}`, 400)
+    );
+  }
+
+  await student.deleteOne();
+
+  res.status(200).json({
+    success: true,
+    message: "student Deleted Successfully",
+  });
 });

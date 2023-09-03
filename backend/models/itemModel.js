@@ -42,7 +42,7 @@ const itemSchemas = new moongose.Schema({
   availability:{
     type:Boolean,
     required:true,
-    default:false
+    default:true
   },
   numOfReviews:[
     {
