@@ -1,0 +1,11 @@
+.home-container{
+    display: flex;
+    height: 100vh;
+    max-width: 100vw;
+    flex-wrap: wrap;
+    margin: 0px;
+    padding: 0px;
+    justify-content: space-around;
+    
+
+}

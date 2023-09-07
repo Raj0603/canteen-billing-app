@@ -17,7 +17,7 @@ const itemSchemas = new moongose.Schema({
   },
   type: {
     type: String,
-    required: [true, "Please enter item's type"],
+    required: [true, "Please enter item's type veg/non-veg"],
   },
   rating: {
     type: Number,

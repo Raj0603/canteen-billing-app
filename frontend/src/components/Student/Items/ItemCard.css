@@ -1,0 +1,78 @@
+.itemCard {
+  /* border: 2px solid red; */
+  margin: 2vmax;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  height: 45vh;
+  width: 16vw;
+  align-items: center;
+  background-color: #F3F3F3;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);
+  overflow: hidden;
+}
+
+.ic-im {
+  height: 25vh;
+  width: 13vw;
+}
+
+.ic-fd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.ic-lt{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 1.3vmax;
+}
+
+.ic-bn, .ic-atc{
+    width: 8vw;
+    /* margin: 0.25vw; */
+    height: 5vh;
+    border: none;
+    font-weight: bold;
+    /* border-radius: 5px; */
+}
+
+.ic-ip{
+    color: black;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.ic-bn{
+    background-color: #CF2B2B;
+    color: white;
+}
+
+.ic-atc{
+    background-color: white;
+    color: #CF2B2B;
+    border-top: 1px solid #CF2B2B;
+}
+
+.ic-sd {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ic-ir {
+  font-size: x-small;
+  margin-left: 3px;
+  color: black;
+}
+
+.ic-in{
+    color: black;
+    font-size: large;
+    font-weight: bolder;
+}
