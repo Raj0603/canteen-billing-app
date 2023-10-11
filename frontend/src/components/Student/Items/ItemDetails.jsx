@@ -1,4 +1,4 @@
-import "./ItemDetails.css"
+import "./ItemDetails.css";
 import Carousel from "react-material-ui-carousel";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -18,28 +18,24 @@ import {
   DialogContent,
   DialogTitle,
   Button,
-  Rating
+  Rating,
 } from "@mui/material";
 import { NEW_REVIEW_RESET } from "../../../constants/itemConstant";
 
-
 const ItemDetails = () => {
-
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const alert = useAlert();
 
   const { id } = useParams();
 
-  const { item,  error } = useSelector(
-    (state) => state.itemDetails
-  );
+  const { item, error } = useSelector((state) => state.itemDetails);
 
   const { error: reviewError, success } = useSelector(
     (state) => state.newReview
   );
 
   const options = {
-    size: "large",
+    size: "medium",
     value: item.ratings,
     readOnly: true,
     precision: 0.5,
@@ -63,10 +59,10 @@ const ItemDetails = () => {
     }
   };
 
-//   const addToCartHandler = () => {
-//     dispatch(addItemsToCart(id, quantity));
-//     alert.success("Item added to cart");
-//   };
+  //   const addToCartHandler = () => {
+  //     dispatch(addItemsToCart(id, quantity));
+  //     alert.success("Item added to cart");
+  //   };
 
   const submitReviewToggle = () => {
     open ? setOpen(false) : setOpen(true);
@@ -101,108 +97,123 @@ const ItemDetails = () => {
     }
 
     dispatch(getItemDetails(id));
-  }, [dispatch, id, error, alert,success, reviewError ]);
-
+  }, [dispatch, id, error, alert, success, reviewError]);
 
   return (
     <>
-    <div className="id-mc">
-            <div className="id-ld">
-              <Carousel className="id-ci">
-                {item.images &&
-                  item.images.map((item, i) => (
-                    <img
-                      className="id-im"
-                      key={item.url}
-                      src={item.url}
-                      alt={`${i} Slide`}
-                    />
-                  ))}
-              </Carousel>
+      <div className="id-mc">
+        <div className="id-ld">
+          <Carousel className="id-ci">
+            {item.images &&
+              item.images.map((item, i) => (
+                <img
+                  className="id-im"
+                  key={item.url}
+                  src={item.url}
+                  alt={`${i} Slide`}
+                />
+              ))}
+          </Carousel>
+        </div>
+        <div className="id-rd">
+          <div className="id-in">
+            <p>Item # {item._id}</p>
+            <h1>{item.name}</h1>
+          </div>
+          <div className="id-id">
+            Description: <p>{item.description}</p>
+          </div>
+          <div className="id-ir">
+            <Rating {...options} />
+            <span>({item.numOfReviews} Reviews)</span>
+          </div>
+          <div className="id-ip">
+            <h2>{`₹${item.price}`}</h2>
+            <div className="id-iq">
+              <div className="id-iqd">
+                <button onClick={decreaseQuantity} className="id-qb">
+                  -
+                </button>
+                <input
+                  readOnly
+                  value={quantity}
+                  type="number"
+                  className="id-qn"
+                />
+                <button onClick={increaseQuantity} className="id-qb">
+                  +
+                </button>
+              </div>
+              <div className="id-bd">
+                <button
+                  className="id-b"
+                  // disabled={Item.Stock < 1 ? true : false}
+                  // onClick={addToCartHandler}
+                >
+                  Add to Cart
+                </button>
+                <button
+                  className="id-b"
+                  // disabled={Item.Stock < 1 ? true : false}
+                  // onClick={addToCartHandler}
+                >
+                  Buy Now
+                </button>
+              </div>
             </div>
-            <div className="id-rd">
-              <div className="id-in">
-                <h2>{item.name}</h2>
-                <p>Item # {item._id}</p>
-              </div>
-              <div className="id-ir">
-                <Rating {...options} />
-                <span>({item.numOfReviews} Reviews)</span>
-              </div>
-              <div className="id-ip">
-                <h1>{`₹${item.price}`}</h1>
-                <div className="id-iq">
-                  <div className="id-iqd">
-                    <button onClick={decreaseQuantity}>-</button>
-                    <input readOnly value={quantity} type="number" />
-                    <button onClick={increaseQuantity}>+</button>
-                  </div>
-                  <button className="id-b"
-                    // disabled={Item.Stock < 1 ? true : false}
-                    // onClick={addToCartHandler}
-                  >
-                    Add to Cart
-                  </button>
-                </div>
-              </div>
-              {/* <p>
+          </div>
+          {/* <p>
                 Status:
                 <b className={Item.Stock < 1 ? "redColor" : "greenColor"}>
                   {Item.Stock < 1 ? "OutOfStock" : "InStock"}
                 </b>
               </p> */}
-              <div className="id-id">
-                Description: <p>{item.description}</p>
-              </div>
-              <button onClick={submitReviewToggle} className="id-sr">
-                Submit Review
-              </button>
-            </div>
-          </div>
+        </div>
+      </div>
 
-          <h3 className="reviewsHeading">REVIEWS</h3>
+      <h3 className="reviewsHeading">REVIEWS</h3>
 
-          <Dialog
-            aria-labelledby="simple-dialog-title"
-            open={open}
-            onClose={submitReviewToggle}
-          >
-            <DialogTitle>Submit Review</DialogTitle>
-            <DialogContent className="submitDialog">
-              <Rating
-                onChange={(e) => setRating(e.target.value)}
-                value={rating}
-                size="large"
-              />
+      <Dialog
+        aria-labelledby="simple-dialog-title"
+        open={open}
+        onClose={submitReviewToggle}
+      >
+        <DialogTitle>Submit Review</DialogTitle>
+        <DialogContent className="submitDialog">
+          <Rating
+            onChange={(e) => setRating(e.target.value)}
+            value={rating}
+            size="large"
+          />
 
-              <textarea
-                className="submitDialogTextArea"
-                cols="30"
-                rows="5"
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-              ></textarea>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={submitReviewToggle} color="secondary">
-                Cancel
-              </Button>
-              <Button onClick={reviewSubmitHandler} color="primary">
-                Submit
-              </Button>
-            </DialogActions>
-          </Dialog>
+          <textarea
+            className="submitDialogTextArea"
+            cols="30"
+            rows="5"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          ></textarea>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={submitReviewToggle} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={reviewSubmitHandler} color="primary">
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
 
-          {item.reviews && item.reviews[0] ? (
-            <div className="reviews">
-              {item.reviews &&
-                item.reviews.map((review) => <ReviewCard review={review} />)}
-            </div>
-          ) : (
-            <p className="noReviews">No Reviews Yet</p>
-          )}
+      {item.reviews && item.reviews[0] ? (
+        <div className="reviews">
+          {item.reviews &&
+            item.reviews.map((review) => <ReviewCard review={review} />)}
+        </div>
+      ) : (
+        <p className="noReviews">No Reviews Yet</p>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default ItemDetails
+export default ItemDetails;
