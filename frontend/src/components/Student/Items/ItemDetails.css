@@ -1,17 +1,75 @@
 .id-mc{
     display: flex;
+    background-color: #F8EFDA;
+    border-radius: 20px;
+    height: 90vh;
 }
 
 .id-ld, .id-rd{
     display: flex;
-    width: 40vw;
-    height: 80vh;
+    width: 50vw;
+    height: 90vh;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.id-ci{
-    height: 50vh;
-    width: 30vw;
+.id-rd{
+    padding-left: 5vw;
+    
+}
+
+.id-ci, .id-im{
+    height: 70vh;
+    width: 50vw;
+    object-fit: contain;
+}
+
+.id-ir{
+    font-size: medium;
+}
+
+.id-qn{
+    width: 40px;
+    text-align: end;
+}
+
+.id-bd{
+    display: flex;
+    margin-top: 20px;
+}
+
+.id-b{
+    height: 5vh;
+    width: 7vw;
+    border-radius: 10px;
+    background-color: #CD4646;
+    border: none;
+    color: #F8EFDA;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.id-iqd{
+    margin: 5px;
+}
+
+.id-qb{
+    border: none;
+    border-radius: 20px;
+    background-color: #CD4646;
+    color: #F8EFDA;
+    height: 30px;
+    width: 30px;
+    
+}
+
+.id-qn{
+    width: 30px;
+    border: none;
+    background-color: #F8EFDA;
+}
+
+.id-in, .id-id, .id-ir, .id-ip{
+    width: 20vw;
 }
