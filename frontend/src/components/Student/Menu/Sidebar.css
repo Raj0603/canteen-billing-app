@@ -1,0 +1,20 @@
+.sidebar {
+  width: 300px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: -300px;
+  background: #fff;
+  transition: right 0.3s;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+.close-button {
+  background: #333;
+  color: #fff;
+  padding: 10px 15px;
+  cursor: pointer;
+}
