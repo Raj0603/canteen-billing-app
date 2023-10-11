@@ -1,0 +1,17 @@
+.id-mc{
+    display: flex;
+}
+
+.id-ld, .id-rd{
+    display: flex;
+    width: 40vw;
+    height: 80vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.id-ci{
+    height: 50vh;
+    width: 30vw;
+}

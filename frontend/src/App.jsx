@@ -1,6 +1,7 @@
 import './App.css'
 import Home from './components/Student/Home/Home'
 import {  Routes, Route,  } from "react-router-dom";
+import ItemDetails from './components/Student/Items/ItemDetails';
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />}/>
+        <Route path="/item/:id" element={<ItemDetails/>}/>
       </Routes>
       
     </>

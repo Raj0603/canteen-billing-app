@@ -1,11 +1,43 @@
-.home-container{
+.hc-fp{
     display: flex;
-    height: 100vh;
+    height: auto;
     max-width: 100vw;
     flex-wrap: wrap;
     margin: 0px;
     padding: 0px;
     justify-content: space-around;
-    
+}
 
+.hc-mc{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F8EFDA;
+}
+
+.hc-ld, .hc-rd{
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    height: 80vh;
+    font-family: 'Sen', sans-serif;
+    align-items: center;
+    justify-content: center;
+}
+
+.hc-hi{
+    height: 70vh;
+    width: 35vw;
+}
+
+.hc-hl{
+    font-family: 'Inter', sans-serif;
+    color: #CF2B2B;
+    font-size: xxx-large;
+    text-align: center;
+}
+
+.hc-cp{
+    width: 30vw;
 }

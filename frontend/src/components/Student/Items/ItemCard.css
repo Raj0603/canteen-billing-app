@@ -51,12 +51,14 @@
 .ic-bn{
     background-color: #CF2B2B;
     color: white;
+    cursor: pointer;
 }
 
 .ic-atc{
     background-color: white;
     color: #CF2B2B;
     border-top: 1px solid #CF2B2B;
+    cursor: pointer;
 }
 
 .ic-sd {

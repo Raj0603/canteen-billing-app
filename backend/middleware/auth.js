@@ -29,7 +29,6 @@ exports.authorizeRoles = (...roles) => {
         )
       );
     }
-
     next();
   };
 };

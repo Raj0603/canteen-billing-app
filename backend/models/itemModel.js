@@ -1,6 +1,6 @@
-const moongose = require("mongoose");
+const mongoose = require("mongoose");
 
-const itemSchemas = new moongose.Schema({
+const itemSchemas = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "Please enter item's name"],
@@ -44,8 +44,17 @@ const itemSchemas = new moongose.Schema({
     required:true,
     default:true
   },
-  numOfReviews:[
+  numOfReviews:{
+    type: Number,
+    default: 0,
+  },
+  reviews:[
     {
+      student: {
+        type: mongoose.Schema.ObjectId,
+        ref: "Student",
+        required: true,
+      },
         name:{
             type:String,
             required:true
@@ -56,10 +65,11 @@ const itemSchemas = new moongose.Schema({
         },
         comment:{
             type:String,
+            required: true,
         }
     }
   ],
 
 });
 
-module.exports = moongose.model("item", itemSchemas);
+module.exports = mongoose.model("item", itemSchemas);

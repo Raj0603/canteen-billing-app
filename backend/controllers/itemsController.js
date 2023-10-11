@@ -16,7 +16,8 @@ exports.createItem = catchAsyncErrors(async (req, res, next) => {
 
 // Get all Item
 
-exports.getAllItems = catchAsyncErrors(async (req, res) => {
+exports.getAllItems = catchAsyncErrors(async (req, res, next) => {
+  
   const resultPerPage = 8;
   const itemsCount = await Item.countDocuments();
 

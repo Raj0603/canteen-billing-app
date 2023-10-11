@@ -11,13 +11,13 @@ const ItemCard = ({item}) => {
         edit: false,
         color: "rgba(20, 20, 20, 0.1)",
         activeColor:"#ffd700",
-        value: 3,
+        value: item.rating,
         isHalf: true
     }
 
     let icon = "";
 
-    if (item.type == "veg") {
+    if (item.type == "Veg") {
         icon = <img src={vegImg} alt="" />
     }else{
         icon = <img src={nonVegImg} alt="" />
@@ -27,7 +27,7 @@ const ItemCard = ({item}) => {
   return (
     <div className = "itemCard">
 
-    <Link className='ic-lt' to={item._id}>
+    <Link className='ic-lt' to={`/item/${item._id}`}>
         <img src={item.images[0].url} alt="item image" className='ic-im' />
         <div className="ic-fd">
 
@@ -37,7 +37,7 @@ const ItemCard = ({item}) => {
         <span className="ic-ip">₹{item.price}</span>
         <div className="ic-sd">
 
-        <ReactStars {...options} /> <span className='ic-ir'>(226 Reviews)</span>
+        <ReactStars {...options} /> <span className='ic-ir'>({item.numOfReviews} Reviews)</span>
         </div>
         <div className="ic-td">
         </div>

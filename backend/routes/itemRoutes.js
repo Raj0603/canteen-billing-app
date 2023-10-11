@@ -10,7 +10,7 @@ const { isAuthenticated, authorizeOwnerRoles } = require("../middleware/auth");
 
 const router = express.Router();
 
-router.route("/items").get(isAuthenticated, getAllItems);
+router.route("/items").get( getAllItems);
 
 router.route("/item/new").post(isAuthenticated, authorizeOwnerRoles("owner"), createItem);
 router
