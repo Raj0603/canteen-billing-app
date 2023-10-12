@@ -35,7 +35,7 @@ const ItemCard = ({item}) => {
         <span className='ic-ii'>{icon}</span>
         </div>
         <span className="ic-ip">₹{item.price}</span>
-        <div className="ic-sd">
+        <div className="ic-sd front">
 
         <ReactStars {...options} /> <span className='ic-ir'>({item.numOfReviews} Reviews)</span>
         </div>
