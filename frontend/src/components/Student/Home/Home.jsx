@@ -6,14 +6,14 @@ import { getItem } from "../../../actions/itemAction";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
 import homeImg from "../../../assets/home.jpg";
-import Sidebar from "../Menu/Sidebar";
+// import Sidebar from "../Menu/Sidebar";
 
 const Home = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
   const { loading, error, items } = useSelector((state) => state.items);
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  // const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (error) {
@@ -22,16 +22,16 @@ const Home = () => {
     dispatch(getItem());
   }, [dispatch, error, alert]);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  // const toggleSidebar = () => {
+  //   setIsSidebarOpen(!isSidebarOpen);
+  // };
 
   return (
     <>
       <MetaData title="Canteen App" />
       <div className="hc-mc">
         <div className="hc-ld">
-          <button onClick={toggleSidebar}>Toggle Sidebar</button>
+          {/* <button onClick={toggleSidebar} className="hc-tb">O</button> */}
           <h1 className="hc-hl">Welcome to Canteen</h1>
           <p className="hc-cp">
             Welcome to our virtual canteen, where culinary delight meets
@@ -50,7 +50,7 @@ const Home = () => {
         {items && items.map((item) => <Item item={item} key={item._id} />)}
       </div>
 
-      <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />
+      {/* <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} /> */}
     </>
   );
 };
