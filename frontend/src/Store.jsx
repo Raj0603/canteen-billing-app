@@ -21,7 +21,7 @@ const reducer = combineReducers({
 //   allUsers: allUsersReducer,
 //   userDetails: userDetailsReducer,
 //   productReviews: productReviewsReducer,
-//   review: reviewReducer,
+  // review: reviewReducer,
 });
 
 let initialState={};

@@ -1,7 +1,7 @@
 // import { Rating } from "@material-ui/lab";
 import React from "react";
 import ReactStars from "react-rating-stars-component";
-// import profilePng from "../../assets/profile.png"
+import profilePng from "../../../assets/profile.png"
 
 const ReviewCard = ({ review }) => {
   const options = {

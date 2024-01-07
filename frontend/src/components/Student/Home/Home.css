@@ -1,19 +1,21 @@
 .hc-fp{
     display: flex;
     height: auto;
-    max-width: 100vw;
+    max-width: 79vw;
     flex-wrap: wrap;
     margin: 0px;
     padding: 0px;
     justify-content: space-around;
+    margin-left: 20vw;
 }
 
 .hc-mc{
     height: 100vh;
+    width: 78vw;
+    margin-left: 20vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #F8EFDA;
 }
 
 .hc-ld, .hc-rd{
@@ -31,11 +33,15 @@
     width: 35vw;
 }
 
-.hc-hl{
+.hc-hl1, .hc-hl2{
     font-family: 'Inter', sans-serif;
     color: #CF2B2B;
     font-size: xxx-large;
     text-align: center;
+}
+
+.hc-hl2{
+    margin-left: 20vw;
 }
 
 .hc-cp{

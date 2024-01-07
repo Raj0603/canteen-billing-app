@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import Item from "../Items/ItemCard";
+import ItemCard from "../Items/ItemCard";
 import "./Home.css";
 import MetaData from "../../MetaData";
 import { getItem } from "../../../actions/itemAction";
 import { useSelector, useDispatch } from "react-redux";
 import { useAlert } from "react-alert";
 import homeImg from "../../../assets/home.jpg";
-// import Sidebar from "../Menu/Sidebar";
+import Loading from "../../Loading/Loading";
+import StudentNavbar from "../StudentNavbar/StudentNavbar";
+import Sidebar from "../Sidebar/Sidebar";
 
 const Home = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
   const { loading, error, items } = useSelector((state) => state.items);
-
-  // const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (error) {
@@ -22,17 +22,15 @@ const Home = () => {
     dispatch(getItem());
   }, [dispatch, error, alert]);
 
-  // const toggleSidebar = () => {
-  //   setIsSidebarOpen(!isSidebarOpen);
-  // };
-
   return (
     <>
+    {loading? <Loading/> :     <>
       <MetaData title="Canteen App" />
+      {/* <StudentNavbar/>
+      <Sidebar/> */}
       <div className="hc-mc">
         <div className="hc-ld">
-          {/* <button onClick={toggleSidebar} className="hc-tb">O</button> */}
-          <h1 className="hc-hl">Welcome to Canteen</h1>
+          <h1 className="hc-hl1">Welcome to Canteen</h1>
           <p className="hc-cp">
             Welcome to our virtual canteen, where culinary delight meets
             convenience. Discover a world of flavors at your fingertips, as you
@@ -45,12 +43,12 @@ const Home = () => {
           <img className="hc-hi" src={homeImg} alt="" />
         </div>
       </div>
-      <h1 className="hc-hl">Today's Featured Items</h1>
+      <h1 className="hc-hl2">Today's Featured Items</h1>
       <div className="hc-fp">
-        {items && items.map((item) => <Item item={item} key={item._id} />)}
+        {items && items.map((item) => <ItemCard item={item} key={item._id} />)}
       </div>
 
-      {/* <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} /> */}
+    </>}
     </>
   );
 };

@@ -9,7 +9,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
-// import Loading from "../Loader/Loading";
+import Loading from "../../Loading/Loading";
 import { useAlert } from "react-alert";
 // import { addItemsToCart } from "../../actions/cartActions";
 import {
@@ -28,7 +28,7 @@ const ItemDetails = () => {
 
   const { id } = useParams();
 
-  const { item, error } = useSelector((state) => state.itemDetails);
+  const { item, loading, error } = useSelector((state) => state.itemDetails);
 
   const { error: reviewError, success } = useSelector(
     (state) => state.newReview
@@ -36,7 +36,7 @@ const ItemDetails = () => {
 
   const options = {
     size: "medium",
-    value: item.ratings,
+    value: item.rating,
     readOnly: true,
     precision: 0.5,
   };
@@ -47,7 +47,7 @@ const ItemDetails = () => {
   const [comment, setComment] = useState("");
 
   const increaseQuantity = () => {
-    // if (item.Stock <= quantity) return;
+    // if (item.availability == false) return;
 
     const qty = quantity + 1;
     setQuantity(qty);
@@ -100,6 +100,8 @@ const ItemDetails = () => {
   }, [dispatch, id, error, alert, success, reviewError]);
 
   return (
+    <>
+    {loading? <Loading/>: 
     <>
       <div className="id-mc">
         <div className="id-ld">
@@ -212,6 +214,7 @@ const ItemDetails = () => {
       ) : (
         <p className="noReviews">No Reviews Yet</p>
       )}
+    </>}
     </>
   );
 };

@@ -1,0 +1,33 @@
+.ssb-main{
+    display: flex;
+    width: 10vw;
+    background-color: white;
+    align-items: center;
+    position: fixed;
+    justify-content: center;
+    margin: 20px;
+    margin-left: 50px;
+    box-shadow: 2px 2px 12px 2px #0000001A;
+    border-radius: 8px;
+}
+
+.ssb-ul{
+    display: flex;
+    height: 30vh;
+    justify-content: space-around;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0px;
+    color:"#e74c3c";
+}
+
+.ssb-li{
+    color: #4B5563;
+    text-decoration: none;
+    word-spacing: 20px;
+    font-size: large;
+}
+
+.ssb-li:active{
+    color: black;
+}

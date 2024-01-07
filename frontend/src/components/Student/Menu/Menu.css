@@ -1,0 +1,38 @@
+.im-mc{
+    width: 84vw;
+    height: auto;
+    /* background-color: #fce38a; */
+    margin-left: 14vw;
+    padding: 0px;
+}
+
+.im-fp{
+    display: flex;
+    height: auto;
+    max-width: 100vw;
+    flex-wrap: wrap;
+    margin: 0px;
+    padding: 0px;
+    justify-content: space-around;
+}
+
+.im-sb{
+    height: 4vh;
+    width: 30vw;
+    text-align: center;
+    font-size: large;
+}
+
+.im-mt{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 10vh;
+    margin-bottom: 4vh;
+}
+
+.im-mh{
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+}

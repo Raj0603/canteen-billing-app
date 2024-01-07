@@ -1,27 +1,24 @@
 .id-mc{
     display: flex;
-    background-color: #F8EFDA;
     border-radius: 20px;
     height: 90vh;
+    width: 78vw;
+    margin-left: 20vw;
 }
 
 .id-ld, .id-rd{
     display: flex;
-    width: 50vw;
+    width: 35vw;
     height: 90vh;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.id-rd{
-    padding-left: 5vw;
-    
-}
 
 .id-ci, .id-im{
-    height: 70vh;
-    width: 50vw;
+    height: 50vh;
+    width: 35vw;
     object-fit: contain;
 }
 
