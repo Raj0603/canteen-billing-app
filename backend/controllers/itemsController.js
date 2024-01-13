@@ -21,7 +21,7 @@ exports.getAllItems = catchAsyncErrors(async (req, res, next) => {
   const resultPerPage = 20;
   const itemsCount = await Item.countDocuments();
 
-  const apiFeatures = new ApiFeatures(Item.find({availability:true}), req.query).search();
+  const apiFeatures = new ApiFeatures(Item.find({availability:true}), req.query).search().filter();
 
   let items = await apiFeatures.query;
 

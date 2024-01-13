@@ -1,7 +1,6 @@
 .im-mc{
     width: 84vw;
     height: auto;
-    /* background-color: #fce38a; */
     margin-left: 14vw;
     padding: 0px;
 }
@@ -35,4 +34,28 @@
     font-size: xx-large;
     font-weight: bold;
     text-align: center;
+}
+
+.im-fs{
+    display: flex;
+    margin-left: 50px;
+    /* justify-content: space-between; */
+}
+
+.im-fl{
+    border: 1px solid #646464;
+    border-radius: 12px;
+    padding: 7px;
+    margin: 5px;
+    background-color: none;
+    cursor: pointer;
+
+}
+
+.im-sbx{
+    border-radius: 12px;
+    width: 250px;
+    margin-left: 35vw;
+    text-align: center;
+    height: 35px;
 }

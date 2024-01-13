@@ -32,18 +32,26 @@ import {
 } from "../constants/itemConstant";
 
 // Get all items
-export const getItem = ()=>
-//   (keyword = "", currentPage = 1, price = [0, 25000], category, ratings=0) =>
+export const getItem =
+  (keyword = "", rating = 0, category, type) =>
+  //   (keyword = "", currentPage = 1, price = [0, 25000], category, ratings=0) =>
   async (dispatch) => {
     try {
       dispatch({ type: ALL_ITEM_REQUEST });
 
-    //   let link = `/api/v1/items?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
+      //   let link = `/api/v1/items?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
 
-    //   if(category){
-    //     link += `&category=${category}`;
-    //   }
-      const {data} = await axios.get("/api/v1/items");
+      let link = `/api/v1/items?keyword=${keyword}&rating[gte]=${rating}`;
+
+      if (category) {
+        link += `&category=${category}`;
+      }
+
+      if (type) {
+        link += `&type=${type}`;
+      }
+
+      const { data } = await axios.get(link);
 
       dispatch({
         type: ALL_ITEM_SUCCESS,
@@ -82,7 +90,7 @@ export const createItem = (itemData) => async (dispatch) => {
     dispatch({ type: NEW_ITEM_REQUEST });
 
     const config = {
-      headers: { "Content-Type": "multiform/form-data"},
+      headers: { "Content-Type": "multiform/form-data" },
     };
 
     const { data } = await axios.post(

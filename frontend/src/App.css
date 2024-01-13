@@ -3,3 +3,24 @@
     padding: 0px;
 }
 
+* {
+    margin: 0;
+    scroll-behavior: smooth;
+  }
+  
+  input::-webkit-inner-spin-button,
+  input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  body::-webkit-scrollbar {
+      width: 0 !important
+  }
+  
+  html,
+  body {
+      overflow: -moz-scrollbars-none;
+      -ms-overflow-style: none;
+  }
+  
