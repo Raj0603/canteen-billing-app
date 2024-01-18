@@ -1,3 +1,54 @@
+.oc-mc{
+    display: flex;
+    flex-direction: column;
+    width: 70vw;
+    border: 1px solid black;
+    margin: 15px;
+    padding-left: 50px;
+    border-radius: 8px;
+}
+
+.oc-osi{
+    height: 7vh;
+    width: 4vw;
+    object-fit: contain;
+}
+
+.oc-mc,.oc-lc,.oc-uc > *{
+    margin: 10px;
+}
+
+.oc-uc{
+    display: flex;
+}
+
+.oc-bl{
+    width: 65vw;
+    height: 1px;
+    background-color: #696999;
+    margin: 10px 0;
+}
+
+.oc-item >  *{
+    margin: 0 5px;
+}
+
+.oc-item > span{
+    letter-spacing: 1.5px;
+}
+
+.oc-lc{
+    display: flex;
+    flex-direction: column;
+}
+
+.oc-item{
+    display: flex;
+    align-items: center;
+}
+
 .my-mc{
-    
+    width: 75vw;
+    margin-left: 20vw;
+    padding: 10px;
 }
