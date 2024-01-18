@@ -33,7 +33,7 @@ import {
 
 // Get all items
 export const getItem =
-  (keyword = "", rating = 0, category, type) =>
+  (keyword = "", rating = 0, category, type, collegeCanteen) =>
   //   (keyword = "", currentPage = 1, price = [0, 25000], category, ratings=0) =>
   async (dispatch) => {
     try {
@@ -41,7 +41,7 @@ export const getItem =
 
       //   let link = `/api/v1/items?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
 
-      let link = `/api/v1/items?keyword=${keyword}&rating[gte]=${rating}`;
+      let link = `/api/v1/items?keyword=${keyword}&rating[gte]=${rating}&collegeCanteen=${collegeCanteen}`;
 
       if (category) {
         link += `&category=${category}`;

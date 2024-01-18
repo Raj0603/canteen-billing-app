@@ -1,9 +1,19 @@
+.id-mcc{
+    display: flex;
+    border-radius: 20px;
+    /* height: 120vh; */
+    width: 78vw;
+    margin-left: 20vw;
+    flex-direction: column;
+}
+
+
 .id-mc{
     display: flex;
     border-radius: 20px;
-    height: 90vh;
+    height: 85vh;
     width: 78vw;
-    margin-left: 20vw;
+    /* margin-left: 20vw; */
 }
 
 .id-ld, .id-rd{
@@ -70,4 +80,18 @@
 
 .id-in, .id-id, .id-ir, .id-ip{
     width: 20vw;
+}
+
+.rc-mc{
+    background-color: #F9FAFB;
+    box-shadow: 2px 2px 12px 2px rgba(0, 0, 0, 0.1);
+    width: 15vw;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 10vh;
+}
+
+.rc-img{
+    height: 5vh;
+    width: 3vw;
 }

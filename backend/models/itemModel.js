@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const {ownerSchema} = require("../models/ownerModel")
+
 
 const itemSchemas = new mongoose.Schema({
   name: {
@@ -14,6 +16,9 @@ const itemSchemas = new mongoose.Schema({
     type: Number,
     required: [true, "Please enter item's Price"],
     maxLength: [8, "Price cannot exceed 8 characters"],
+  },
+  collegeCanteen: {
+    type: String,
   },
   type: {
     type: String,

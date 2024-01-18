@@ -11,9 +11,15 @@ const Sidebar = () => {
           <Link to="/menu">
             <li className="ssb-li">Menu</li>
           </Link>
+          <Link to="/cart">
             <li className="ssb-li">Cart</li>
+          </Link>
+          <Link to="/myorders">
             <li className="ssb-li"> Orders</li>
+          </Link>
+            <Link to="/saccount">
             <li className="ssb-li">Profile</li>
+            </Link>
             <li className="ssb-li">Setting</li>
             
         </ul>

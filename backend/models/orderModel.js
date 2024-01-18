@@ -25,6 +25,10 @@ const orderSchema = new mongoose.Schema({
         ref: "items",
         required: true,
       },
+      type:{
+        type: String,
+        required: true
+      }
     },
   ],
   student: {
@@ -41,10 +45,12 @@ const orderSchema = new mongoose.Schema({
     id: {
       type: String,
       required: true,
+      default:"cghfgchjf"
     },
     status: {
       type: String,
       required: true,
+      default:"Paid"
     },
   },
   paidAt: {

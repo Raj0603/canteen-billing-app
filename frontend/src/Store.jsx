@@ -1,17 +1,20 @@
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import {itemDetailsReducer, itemsReducer, newReviewReducer} from "./reducers/itemReducer"
+import { forgotPasswordReducer, studentProfileReducer, studentReducer } from "./reducers/studentReducer";
+import { cartReducer } from "./reducers/cartReducer";
+import { myOrdersReducer, newOrderReducer } from "./reducers/orderReducer";
 
 
 const reducer = combineReducers({
   items: itemsReducer,
   itemDetails: itemDetailsReducer,
-//   user: userReducer,
-//   profile: profileReducer,
-//   forgotPassword: forgotPasswordReducer,
-//   cart: cartReducer,
-//   newOrder: newOrderReducer,
-//   myOrders: myOrdersReducer,
+  student: studentReducer,
+  profile: studentProfileReducer,
+  forgotPassword: forgotPasswordReducer,
+  cart: cartReducer,
+  newOrder: newOrderReducer,
+  myOrders: myOrdersReducer,
 //   orderDetails: orderDetailsReducer,
   newReview: newReviewReducer,
 //   newProduct: newProductReducer,
@@ -24,18 +27,14 @@ const reducer = combineReducers({
   // review: reviewReducer,
 });
 
-let initialState={};
 
-// let initialState = {
-//   cart: {
-//     cartItems: localStorage.getItem("cartItems")
-//       ? JSON.parse(localStorage.getItem("cartItems"))
-//       : [],
-//     shippingInfo: localStorage.getItem("shippingInfo")
-//       ? JSON.parse(localStorage.getItem("shippingInfo"))
-//       : {},
-//   },
-// };
+let initialState = {
+  cart: {
+    cartItems: localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
+      : [],
+  },
+};
 
 const store = configureStore({
   reducer: reducer,

@@ -1,11 +1,26 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import { useDispatch, useSelector } from "react-redux";
+import { useAlert } from "react-alert";
 import ReactStars from "react-rating-stars-component"
 import vegImg from "../../../assets/iv.png"
 import nonVegImg from "../../../assets/inv.png"
 import "./ItemCard.css"
+import { addItemsToCart } from "../../../actions/cartAction";
 
 const ItemCard = ({item}) => {
+    const dispatch = useDispatch();
+    const alert = useAlert();
+    const {cartItems} = useSelector((state)=>state.cart)
+  
+
+const addToCartHandler = () => {
+  const existingItem = cartItems.find((cartItem) => cartItem.item._id === item._id);
+  const quantity = existingItem ? existingItem.quantity + 1 : 1;
+
+  dispatch(addItemsToCart(item._id, quantity));
+  alert.success("Item added to cart");
+};
 
     const options = {
         edit: false,
@@ -45,7 +60,7 @@ const ItemCard = ({item}) => {
     <div className="ic-fd">
 
         <button className="ic-bn">Buy Now</button>
-        <button className="ic-atc">Add to cart</button>
+        <button className="ic-atc" onClick={addToCartHandler}>Add to cart</button>
     </div>
     </div>
   )

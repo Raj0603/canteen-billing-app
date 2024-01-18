@@ -32,6 +32,10 @@ const studentSchema = new mongoose.Schema({
     type: String,
     default: "user",
   },
+  gender: {
+    type: String,
+    required: [true, "Please select your gender"],
+  },
 
   resetPasswordToken: String,
   resetPasswordExpire: Date,

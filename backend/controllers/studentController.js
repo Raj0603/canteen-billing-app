@@ -8,13 +8,14 @@ const crypto = require("crypto");
 // Register a Student
 
 exports.registerStudent = catchAsyncErrors(async (req, res, next) => {
-  const { name, email, password, collegeCanteen } = req.body;
+  const { name, email, password, collegeCanteen, gender } = req.body;
 
   const student = await Student.create({
     name,
     email,
     password,
     collegeCanteen,
+    gender,
   });
 
   sendToken(student, 201, res);
@@ -77,9 +78,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   // const resetpasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
 
-  const resetpasswordUrl = `${req.protocol}://${req.get(
-    "host"
-  )}/api/v1/password/reset/${resetToken}`;
+  const resetpasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
 
   const message = `Your password reset token is:  \n\n ${resetpasswordUrl} \n\nIf you have not requested this email then, please ignore it `;
 
@@ -177,6 +176,8 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
   const newstudentData = {
     name: req.body.name,
     email: req.body.email,
+    collegeCanteen: req.body.collegeCanteen,
+    gender: req.body.gender,
   };
 
   const student = await Student.findByIdAndUpdate(req.student.id, newstudentData, {

@@ -1,0 +1,18 @@
+.os-mc{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 80vh;
+}
+
+.os-vob{
+    background-color: #E74C3C;
+    height: 7vh;
+    width: 10vw;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: larger
+}

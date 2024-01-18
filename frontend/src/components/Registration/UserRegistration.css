@@ -1,0 +1,52 @@
+.ur-mc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 68vh;
+}
+
+.ul-mc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 55vh;
+}
+
+.ur-itx{
+    width: 23vw;
+    height: 3.5vh;
+    padding-left: 10px;
+    border-radius: 3px;
+}
+
+.ur-rb{
+    width: 24vw;
+    height: 4vh;
+    background-color: #E74C3C;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.ur-li{
+    height: 15vh;
+    width: 8vw;
+}
+
+.ur-pem{
+    width: 23vw;
+    font-size: small;
+}
+
+.fp-mc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 40vh;
+    margin-top: 20vh;
+    
+}

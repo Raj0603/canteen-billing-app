@@ -1,12 +1,34 @@
 const Item = require("../models/itemModel");
 const ErrorHandler = require("../utils/errorhandler");
+const Student = require("../models/studentModel")
 const catchAsyncErrors = require("../middleware/catchAE");
 const ApiFeatures = require("../utils/apiFeatures");
 
 //Create Item --Owner Access
 
 exports.createItem = catchAsyncErrors(async (req, res, next) => {
-  const item = await Item.create(req.body);
+
+  const {
+    name,
+    description,
+    price,
+    category,
+    type,
+    availability,
+    images
+
+  } = req.body
+
+  const item = await Item.create({
+    name,
+    description,
+    price,
+    category,
+    type,
+    availability,
+    images,
+    collegeCanteen: req.owner.ownerCollegeName,
+  });
 
   res.status(201).json({
     success: true,
@@ -21,7 +43,7 @@ exports.getAllItems = catchAsyncErrors(async (req, res, next) => {
   const resultPerPage = 20;
   const itemsCount = await Item.countDocuments();
 
-  const apiFeatures = new ApiFeatures(Item.find({availability:true}), req.query).search().filter();
+  const apiFeatures = new ApiFeatures(Item.find({availability:true, collegeCanteen: req.param.collegeCanteen }), req.query).search().filter();
 
   let items = await apiFeatures.query;
 

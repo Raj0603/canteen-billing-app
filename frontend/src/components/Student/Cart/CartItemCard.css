@@ -1,0 +1,51 @@
+.cic-mc{
+    height: 20vh;
+    width: 60vw;
+    border: 2px solid black;
+    border-radius: 8px;
+    display: flex;
+    margin: 5px;
+}
+
+.cic-img{
+    height: 15vh;
+    padding: 20px;
+    width: 7vw;
+}
+
+.cic-qty{
+    display: flex;
+    margin-top: 8px;
+}
+
+.cic-dc{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cic-tp{
+    padding-left: 37vw;
+}
+
+.cic-qb{
+    height: 5vh;
+    width: 2.5vw;
+    background-color: white;
+    border: 0.5px solid black;
+    cursor: pointer;
+}
+
+.cic-qn{
+    width: 2.5vw;
+    text-align: center;
+}
+
+.cic-nt{
+    display: flex;
+    align-items: center;
+}
+
+.cic-ti{
+    margin-left: 5px;
+}
