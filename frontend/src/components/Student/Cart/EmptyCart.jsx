@@ -5,9 +5,9 @@ import {Link} from "react-router-dom"
 const EmptyCart = () => {
   return (
     <div className='ec-mc'>
-        <img src={cartIcon} alt="" />
+        <img src={cartIcon} alt="" className='ec-ci'/>
         <h2>Your Cart is Empty :)</h2>
-        <p>Add some food items to proceed to cart</p>
+        <p className='ec-p'>Add some food items to proceed to cart</p>
         <Link to="/menu">
         <button className="ec-bb">
             Browse Menu

@@ -1,15 +1,11 @@
 const Order = require("../models/orderModel");
-const Owner = require("../models/ownerModel")
+const Owner = require("../models/ownerModel");
 const ErrorHandler = require("../utils/errorhandler");
 const catchAsyncErrors = require("../middleware/catchAE");
 
 // Create new order
 exports.newOrder = catchAsyncErrors(async (req, res, next) => {
-  const {
-    orderItems,
-    paymentInfo,
-    totalPrice,
-  } = req.body;
+  const { orderItems, paymentInfo, totalPrice } = req.body;
 
   const order = await Order.create({
     orderItems,
@@ -55,16 +51,16 @@ exports.myOrders = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// Get All Orders --Admin/owner
-
+// Get All Orders --owner
 
 exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
-  
-  const owner = await Owner.findById(req.params.id)
+  const owner = await Owner.findById(req.params.id);
 
-  const orders = await Order.find({canteen: owner.ownerCollegeName});
+  const orders = await Order.find({ canteen: owner.ownerCollegeName });
 
   let totalAmount = 0;
+
+  let totalOrders = orders.length;
 
   orders.forEach((order) => {
     totalAmount += order.totalPrice;
@@ -73,12 +69,31 @@ exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     sucess: true,
     totalAmount,
+    totalOrders,
     orders,
   });
-
-
 });
 
+// Get All Orders --admin
+
+exports.getAdminOrders = catchAsyncErrors(async (req, res, next) => {
+  const orders = await Order.find();
+
+  let totalAmount = 0;
+
+  let totalOrder = orders.length;
+
+  orders.forEach((order) => {
+    totalAmount += order.totalPrice;
+  });
+
+  res.status(200).json({
+    sucess: true,
+    totalAmount,
+    totalOrder,
+    orders,
+  });
+});
 
 // Update Order Status --owner
 
@@ -93,11 +108,7 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("You have already served this order", 400));
   }
 
-  order.orderStatus = req.body.status;
-
-  if (req.body.status === "Served") {
-    order.deliveredAt = Date.now();
-  }
+  order.orderStatus = req.body.orderStatus;
 
   await order.save({ validateBeforeSave: false });
 

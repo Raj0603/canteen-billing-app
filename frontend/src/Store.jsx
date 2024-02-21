@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
-import {itemDetailsReducer, itemsReducer, newReviewReducer} from "./reducers/itemReducer"
-import { forgotPasswordReducer, studentProfileReducer, studentReducer } from "./reducers/studentReducer";
+import {itemDetailsReducer, itemReviewsReducer, itemsReducer, newReviewReducer, reviewReducer} from "./reducers/itemReducer"
+import { allOwnersReducer, allStudentsReducer, forgotPasswordReducer, studentDetailsReducer, studentProfileReducer, studentReducer } from "./reducers/studentReducer";
 import { cartReducer } from "./reducers/cartReducer";
-import { myOrdersReducer, newOrderReducer } from "./reducers/orderReducer";
+import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer } from "./reducers/orderReducer";
 
 
 const reducer = combineReducers({
@@ -15,16 +15,14 @@ const reducer = combineReducers({
   cart: cartReducer,
   newOrder: newOrderReducer,
   myOrders: myOrdersReducer,
-//   orderDetails: orderDetailsReducer,
+  allStudents: allStudentsReducer,
+  studentDetails: studentDetailsReducer,
+  allOrders: allOrdersReducer,
+  allOwners: allOwnersReducer,
   newReview: newReviewReducer,
-//   newProduct: newProductReducer,
-//   product: productReducer,
-//   allOrders: allOrdersReducer,
-//   order: orderReducer,
-//   allUsers: allUsersReducer,
-//   userDetails: userDetailsReducer,
-//   productReviews: productReviewsReducer,
-  // review: reviewReducer,
+  orderDetails: orderDetailsReducer,
+  productReviews: itemReviewsReducer,
+  review: reviewReducer,
 });
 
 

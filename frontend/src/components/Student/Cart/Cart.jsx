@@ -7,6 +7,7 @@ import {createOrder} from "../../../actions/orderAction"
 import { useSelector } from "react-redux";
 import { emptyCartItems } from "../../../actions/cartAction";
 import EmptyCart from "./EmptyCart";
+import Footer from "../Sidebar/Footer";
 
 // import {
 //   addItemsToCart,
@@ -41,6 +42,7 @@ const Cart = () => {
 
   return (
     <>
+    <Footer/>
       {cartItems.length === 0 ? (
         <>
           <EmptyCart />
@@ -58,7 +60,7 @@ const Cart = () => {
 
           <div className="cart-td">
             <div className="cart-total">
-              <span>Total</span>
+              <span className="cart-tt">Total</span>
               <span className="cart-ts">{`${totalAmount}`}</span>
             </div>
             <div className="cart-co">

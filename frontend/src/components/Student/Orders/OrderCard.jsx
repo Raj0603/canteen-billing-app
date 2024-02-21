@@ -22,11 +22,7 @@ const OrderCard = ({ order}) => {
       </div>
       <div className="oc-lc">
         <span style={{color:"#696999"}}>Items</span>
-        {/* {order.orderItems.map((item) => (
-          <span key={item._id}>
-            {icon} {item.quantity} X {item.name}
-          </span>
-        ))} */}
+
         {order.orderItems.map((item) => (
           <div key={item._id} className="oc-item">
             {item.type === "Veg" ? (
@@ -34,15 +30,18 @@ const OrderCard = ({ order}) => {
             ) : (
               <img src={nonVegImg} alt="Non-Veg" />
             )}
-            <span>
+            <span className="oc-qnc">
               {item.quantity} X {item.name}
+            </span>
+            <span>
+            ₹{item.quantity*item.price}
             </span>
           </div>
         ))}
         <span className="oc-bl"></span>
-        <div>
+        <div className="oc-dpc">
           
-        <span style={{color:"#696999"}}>{formattedDate}</span> <span style={{marginLeft:"55vw"}}> ₹ {order.totalPrice}</span>
+        <span style={{color:"#696999"}}>{formattedDate}</span> <span className="oc-tps"> ₹ {order.totalPrice}</span>
         </div>
       </div>
     </div>

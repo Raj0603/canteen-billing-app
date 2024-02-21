@@ -12,6 +12,7 @@ import ItemCard from "../Items/ItemCard";
 import Filter from "./filter";
 import { useParams } from "react-router-dom";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import Footer from "../Sidebar/Footer";
 
 const Menu = () => {
   const alert = useAlert();
@@ -26,12 +27,24 @@ const Menu = () => {
   const [menu, setMenu] = useState();
   const [sortOrder, setSortOrder] = useState("normal");
   const [collegeCanteen, setCollegeCanteen] = useState("");
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   // const [loginStudent, setLoginStudent] = useState("")
 
   // const [sortOrder, setSortOrder] = useState("");
   //  collegeCanteen = student.collegeCanteen;
 
   const keywords = keyword;
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const handleCategoryClick = () => {
     const currentIndex = categories.indexOf(category);
@@ -104,12 +117,15 @@ const Menu = () => {
 
   return (
     <>
+
+    <Footer/>
       {loading ? (
         <Loading />
       ) : (
         <>
           <MetaData title="Menu" />
           <div className="im-mc">
+          {windowWidth < 700 && <Filter />}
             <div className="im-fs">
               <button className="im-fl" onClick={handleVegClick}>
                 Veg
@@ -127,7 +143,7 @@ const Menu = () => {
               <button className="im-fl" onClick={handleRatingClick}>
                 Ratings (above 4)
               </button>
-              <Filter />
+              {windowWidth > 700 && <Filter />}
             </div>
             <div className="im-fp">
               {menu &&

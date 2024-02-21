@@ -15,7 +15,7 @@ exports.createItem = catchAsyncErrors(async (req, res, next) => {
     category,
     type,
     availability,
-    images
+    image
 
   } = req.body
 
@@ -26,7 +26,7 @@ exports.createItem = catchAsyncErrors(async (req, res, next) => {
     category,
     type,
     availability,
-    images,
+    image,
     collegeCanteen: req.owner.ownerCollegeName,
   });
 
@@ -36,7 +36,7 @@ exports.createItem = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// Get all Item
+// Get all Item --Student || --Owner
 
 exports.getAllItems = catchAsyncErrors(async (req, res, next) => {
   
@@ -112,5 +112,123 @@ exports.deleteItem = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: "Item deleted successfully",
+  });
+});
+
+// get all Items --admin
+
+exports.getAdminItems = catchAsyncErrors(async (req, res, next) => {
+  
+  const itemsCount = await Item.countDocuments();
+
+  let items = await Item.find()
+
+  res.status(200).json({
+    success: true,
+    itemsCount,
+    items,
+  });
+});
+
+// Create new Review / Update Review
+
+exports.createItemReview = catchAsyncErrors(async (req, res, next) => {
+  const { rating, comment, itemId } = req.body;
+
+  const review = {
+    student: req.student._id,
+    name: req.student.name,
+    rating: Number(rating),
+    comment,
+    dateAt: Date.now(),
+  };
+
+  const item = await Item.findById(itemId);
+
+  const isReviewed = item.reviews.find(
+    (rev) => rev.student.toString() === req.student._id.toString()
+  );
+
+  if (isReviewed) {
+    item.reviews.forEach((rev) => {
+      if (rev.student.toString() === req.student._id.toString())
+        (rev.rating = rating), (rev.comment = comment);
+    });
+  } else {
+    item.reviews.push(review);
+    item.numOfReviews = item.reviews.length;
+  }
+
+  let avg = 0;
+  item.reviews.forEach((rev) => {
+    avg += rev.rating;
+  });
+
+  item.rating = avg / item.reviews.length;
+
+  await item.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
+  });
+});
+
+// Get all reviews of a item
+
+exports.getItemReviews = catchAsyncErrors(async (req, res, next) => {
+  const item = await Item.findById(req.query.id);
+
+  if (!item) {
+    return next(new ErrorHandler("Item not found", 404));
+  }
+  res.status(200).json({
+    success: true,
+    reviews: item.reviews,
+  });
+});
+
+// Delete Reviews
+
+exports.deleteReviews = catchAsyncErrors(async (req, res, next) => {
+  const item = await Item.findById(req.query.itemId);
+
+  if (!item) {
+    return next(new ErrorHandler("Item not found", 404));
+  }
+
+  const reviews = item.reviews.filter(
+    (rev) => rev._id.toString() !== req.query.id.toString()
+  );
+
+  let avg = 0;
+
+  reviews.forEach((rev) => {
+    avg += rev.rating;
+  });
+
+  let rating = 0;
+
+  if (reviews.length === 0) {
+    rating = 0;
+  } else {
+    rating = avg / reviews.length;
+  }
+
+  await Item.findByIdAndUpdate(
+    req.query.itemId,
+    {
+      numOfReviews: reviews.length,
+      rating,
+      reviews,
+    },
+    {
+      new: true,
+      runValidators: true,
+      useFindandModify: false,
+    }
+  );
+
+  res.status(200).json({
+    success: true,
   });
 });

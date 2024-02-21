@@ -1,61 +1,103 @@
-.im-mc{
-    width: 84vw;
-    height: auto;
-    margin-left: 14vw;
-    padding: 0px;
+.im-mc {
+  width: 84vw;
+  height: auto;
+  margin-left: 14vw;
+  padding: 0px;
 }
 
-.im-fp{
-    display: flex;
-    height: auto;
+.im-fp {
+  display: flex;
+  height: auto;
+  max-width: 100vw;
+  flex-wrap: wrap;
+  margin: 0px;
+  padding: 0px;
+  justify-content: space-around;
+}
+
+.im-sb {
+  height: 4vh;
+  width: 30vw;
+  text-align: center;
+  font-size: large;
+}
+
+.im-mt {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 10vh;
+  margin-bottom: 4vh;
+}
+
+.im-mh {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+}
+
+.im-fs {
+  display: flex;
+  margin-left: 50px;
+  /* justify-content: space-between; */
+}
+
+.im-fl {
+  border: 1px solid #646464;
+  border-radius: 12px;
+  padding: 7px;
+  margin: 5px;
+  background-color: none;
+  cursor: pointer;
+}
+
+.im-sbx {
+  border-radius: 12px;
+  width: 250px;
+  margin-left: 35vw;
+  text-align: center;
+  height: 35px;
+}
+
+@media screen and (max-width: 600px) {
+  .im-mc {
+    margin-left: 0px;
     max-width: 100vw;
-    flex-wrap: wrap;
-    margin: 0px;
-    padding: 0px;
-    justify-content: space-around;
-}
+  }
 
-.im-sb{
-    height: 4vh;
-    width: 30vw;
+  .im-fs {
+    width: 100vw;
+  }
+
+  .im-sbx {
+    margin-left: 0px;
+    margin: 10px;
+    height: 6vh;
+    width: 80vw;
+    font-size: medium;
+  }
+
+  .im-fib {
+    width: 100vw;
     text-align: center;
-    font-size: large;
-}
+  }
 
-.im-mt{
+  .im-fs {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 10vh;
-    margin-bottom: 4vh;
-}
+    overflow-x: auto; 
+    width: 83vw;
+    margin-left: 8vw;
+    white-space: nowrap;
+  }
 
-.im-mh{
-    font-size: xx-large;
-    font-weight: bold;
-    text-align: center;
-}
+  .im-fl {
+    height: 33px;
+    font-size: 16px;
+    margin-left: 3px;
+  }
 
-.im-fs{
-    display: flex;
-    margin-left: 50px;
-    /* justify-content: space-between; */
-}
-
-.im-fl{
-    border: 1px solid #646464;
-    border-radius: 12px;
-    padding: 7px;
-    margin: 5px;
-    background-color: none;
-    cursor: pointer;
-
-}
-
-.im-sbx{
-    border-radius: 12px;
-    width: 250px;
-    margin-left: 35vw;
-    text-align: center;
-    height: 35px;
+  .im-fp{
+    width: 100vw;
+    margin-bottom: 10vh;
+  }
 }

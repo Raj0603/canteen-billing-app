@@ -1,12 +1,32 @@
 import "./Home.css";
+import { useEffect } from "react";
 import MetaData from "../../MetaData";
-
+import { useSelector } from "react-redux";
 import homeImg from "../../../assets/home.jpg";
+import { useNavigate } from "react-router-dom";
+import Footer from "../Sidebar/Footer";
 
 const Home = () => {
+
+  const navigate = useNavigate();
+
+  const { student } = useSelector(
+    (state) => state.student
+  );
+
+  useEffect(() => {
+    if (student && student.role === "admin") {
+      navigate("/dashboard");
+      window.location.reload();
+    }
+  }, [navigate, student]);
+
+
   return (
     <>
       <MetaData title="Canteen App" />
+
+      <Footer/>
 
       <div className="hc-mc">
         <div className="hc-ld">

@@ -13,7 +13,7 @@ const {
   deleteOwner,
 } = require("../controllers/ownerController");
 
-const { isAuthenticated, authorizeOwnerRoles } = require("../middleware/auth");
+const { isAuthenticated, authorizeOwnerRoles, authorizeRoles } = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -35,11 +35,11 @@ router.route("/ome/update").put(isAuthenticated, updateoProfile);
 
 router
   .route("/admin/owner")
-  .get(isAuthenticated, authorizeOwnerRoles("admin"), getAllOwners);
+  .get(isAuthenticated, authorizeRoles("admin"), getAllOwners);
 
 router
   .route("/admin/owner/:id")
-  .get(isAuthenticated, getSingleOwner)
-  .delete(isAuthenticated, authorizeOwnerRoles("admin"), deleteOwner);
+  .get(isAuthenticated, authorizeRoles("admin"), getSingleOwner)
+  .delete(isAuthenticated, authorizeRoles("admin"), deleteOwner);
 
 module.exports = router;

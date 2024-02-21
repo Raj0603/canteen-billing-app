@@ -6,6 +6,7 @@ import { myOrders } from '../../../actions/orderAction';
 import { useAlert } from 'react-alert';
 import OrderCard from './OrderCard';
 import Loading from '../../Loading/Loading';
+import Footer from '../Sidebar/Footer';
 
 export const MyOrder = () => {
   const alert = useAlert();
@@ -23,6 +24,8 @@ export const MyOrder = () => {
 
   return (
     <>
+
+    <Footer/>
       {loading ? (
         <Loading />
       ) : (

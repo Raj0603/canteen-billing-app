@@ -18,11 +18,19 @@ import Cart from "./components/Student/Cart/Cart";
 import { useLocation, useNavigate } from "react-router-dom";
 import OrderSuccess from "./components/Student/Orders/OrderSuccess";
 import { MyOrder } from "./components/Student/Orders/MyOrder";
+import Dashboard from "./components/Admin/Dashboard";
+import OwnerList from "./components/Admin/OwnerList";
+import StudentList from "./components/Admin/StudentList";
+import OrderList from "./components/Admin/OrderList";
+import AdminSidebar from "./components/Admin/AdminSidebar";
+import Footer from "./components/Student/Sidebar/Footer";
 
 function App() {
-  const { isAuthenticated } = useSelector((state) => state.student);
+  const { isAuthenticated, student } = useSelector((state) => state.student);
 
   const location = useLocation();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (
@@ -34,10 +42,25 @@ function App() {
     }
   }, [location.pathname]);
 
+  // useEffect(() => {
+  //   function handleResize() {
+  //     if (window.innerWidth < 700 && !isAuthenticated) {
+  //       navigate('/slogin');
+  //     }
+  //   }
+
+  //   window.addEventListener('resize', handleResize);
+
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, [isAuthenticated, navigate]);
+
   return (
     <>
       <StudentNavbar />
-      {isAuthenticated && <Sidebar />}
+      {isAuthenticated && student?.role === "student" && <Sidebar />}
+      {/* {isAuthenticated && student?.role === "student" && <Footer />} */}
+      {isAuthenticated && student?.role === "admin" && <AdminSidebar />}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/item/:id" element={<ItemDetails />} />
@@ -49,6 +72,10 @@ function App() {
         <Route exact path="/forgotpassword" element={<ForgotPassword />} />
         <Route exact path="/ordersuccess" element={<OrderSuccess />} />
         <Route exact path="/myorders" element={<MyOrder />} />
+        <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/ownerlist" element={<OwnerList />} />
+        <Route exact path="/studentlist" element={<StudentList />} />
+        <Route exact path="/orderlist" element={<OrderList />} />
         <Route
           exact
           path="/password/reset/:token"

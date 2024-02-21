@@ -30,6 +30,8 @@ const ForgotPassword = () => {
     myForm.set("email", email);
 
     dispatch(forgotPassword(myForm));
+
+    setEmail("")
   };
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const ForgotPassword = () => {
     }
     if (message) {
       alert.success(message);
-      navigate("/sregister")
+      navigate("/slogin")
     }
   }, [error, alert, dispatch, message, setEmail]);
 

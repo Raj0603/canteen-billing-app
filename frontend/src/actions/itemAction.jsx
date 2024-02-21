@@ -7,15 +7,6 @@ import {
   ADMIN_ITEM_REQUEST,
   ADMIN_ITEM_SUCCESS,
   ADMIN_ITEM_FAIL,
-  NEW_ITEM_REQUEST,
-  NEW_ITEM_SUCCESS,
-  NEW_ITEM_FAIL,
-  UPDATE_ITEM_REQUEST,
-  UPDATE_ITEM_SUCCESS,
-  UPDATE_ITEM_FAIL,
-  DELETE_ITEM_REQUEST,
-  DELETE_ITEM_SUCCESS,
-  DELETE_ITEM_FAIL,
   ITEM_DETAILS_REQUEST,
   ITEM_DETAILS_SUCCESS,
   ITEM_DETAILS_FAIL,
@@ -74,84 +65,11 @@ export const getAdminItem = () => async (dispatch) => {
 
     dispatch({
       type: ADMIN_ITEM_SUCCESS,
-      payload: data.items,
-    });
-  } catch (error) {
-    dispatch({
-      type: ADMIN_ITEM_FAIL,
-      payload: error.response.data.message,
-    });
-  }
-};
-
-// Create Item
-export const createItem = (itemData) => async (dispatch) => {
-  try {
-    dispatch({ type: NEW_ITEM_REQUEST });
-
-    const config = {
-      headers: { "Content-Type": "multiform/form-data" },
-    };
-
-    const { data } = await axios.post(
-      `/api/v1/admin/item/new`,
-      itemData,
-      config
-    );
-
-    dispatch({
-      type: NEW_ITEM_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: NEW_ITEM_FAIL,
-      payload: error.response.data.message,
-    });
-  }
-};
-
-// Update Item
-export const updateItem = (id, itemData) => async (dispatch) => {
-  try {
-    dispatch({ type: UPDATE_ITEM_REQUEST });
-
-    const config = {
-      headers: { "Content-Type": "application/json" },
-    };
-
-    const { data } = await axios.put(
-      `/api/v1/admin/item/${id}`,
-      itemData,
-      config
-    );
-
-    dispatch({
-      type: UPDATE_ITEM_SUCCESS,
-      payload: data.success,
-    });
-  } catch (error) {
-    dispatch({
-      type: UPDATE_ITEM_FAIL,
-      payload: error.response.data.message,
-    });
-  }
-};
-
-// Delete Item
-export const deleteItem = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: DELETE_ITEM_REQUEST });
-
-    const { data } = await axios.delete(`/api/v1/admin/item/${id}`);
-
-    dispatch({
-      type: DELETE_ITEM_SUCCESS,
-      payload: data.success,
-    });
-  } catch (error) {
-    dispatch({
-      type: DELETE_ITEM_FAIL,
+      type: ADMIN_ITEM_FAIL,
       payload: error.response.data.message,
     });
   }

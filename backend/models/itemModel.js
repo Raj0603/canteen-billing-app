@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const {ownerSchema} = require("../models/ownerModel")
-
+const { ownerSchema } = require("../models/ownerModel");
 
 const itemSchemas = new mongoose.Schema({
   name: {
@@ -28,53 +27,48 @@ const itemSchemas = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  images: [
-    {
-      public_id: {
-        type: String,
-        required: true,
-      },
-      url: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
-  category:{
-    type:String,
-    required:[true,"Please enter item's Category"],
+  image: {
+    type: String,
+    required: true,
   },
-  availability:{
-    type:Boolean,
-    required:true,
-    default:true
+  category: {
+    type: String,
+    required: [true, "Please enter item's Category"],
   },
-  numOfReviews:{
+  availability: {
+    type: Boolean,
+    required: true,
+    default: true,
+  },
+  numOfReviews: {
     type: Number,
     default: 0,
   },
-  reviews:[
+  reviews: [
     {
       student: {
         type: mongoose.Schema.ObjectId,
         ref: "Student",
         required: true,
       },
-        name:{
-            type:String,
-            required:true
-        },
-        rating:{
-            type:Number,
-            required:true
-        },
-        comment:{
-            type:String,
-            required: true,
-        }
-    }
+      name: {
+        type: String,
+        required: true,
+      },
+      rating: {
+        type: Number,
+        required: true,
+      },
+      comment: {
+        type: String,
+        required: true,
+      },
+      dateAt: {
+        type: Date,
+        required: true,
+      },
+    },
   ],
-
 });
 
 module.exports = mongoose.model("item", itemSchemas);

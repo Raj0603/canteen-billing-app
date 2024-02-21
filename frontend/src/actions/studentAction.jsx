@@ -23,9 +23,15 @@ import {
     ALL_STUDENTS_REQUEST,
     ALL_STUDENTS_SUCCESS,
     ALL_STUDENTS_FAIL,
+    ALL_OWNERS_REQUEST,
+    ALL_OWNERS_SUCCESS,
+    ALL_OWNERS_FAIL,
     DELETE_STUDENT_REQUEST,
     DELETE_STUDENT_SUCCESS,
     DELETE_STUDENT_FAIL,
+    DELETE_OWNER_REQUEST,
+    DELETE_OWNER_SUCCESS,
+    DELETE_OWNER_FAIL,
     UPDATE_STUDENT_REQUEST,
     UPDATE_STUDENT_SUCCESS,
     UPDATE_STUDENT_FAIL,
@@ -123,7 +129,6 @@ import {
       const {data} = await axios.post(`/api/v1/password/forgot`, email, config);
   
       dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
-      console.log(data.message)
     } catch (error) {
       dispatch({ type: FORGOT_PASSWORD_FAIL, payload: error.response.data.message });
     }
@@ -157,11 +162,39 @@ import {
       dispatch({ type: ALL_STUDENTS_REQUEST });
       const { data } = await axios.get(`/api/v1/admin/students`);
   
-      dispatch({ type: ALL_STUDENTS_SUCCESS, payload: data.students });
+      dispatch({ type: ALL_STUDENTS_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: ALL_STUDENTS_FAIL, payload: error.response.data.message });
     }
   };
+
+  // get All Owners
+  export const getAllOwners = () => async (dispatch) => {
+    try {
+      dispatch({ type: ALL_OWNERS_REQUEST });
+      const { data } = await axios.get(`/api/v1/admin/owner`);
+  
+      dispatch({ type: ALL_OWNERS_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: ALL_OWNERS_FAIL, payload: error.response.data.message });
+    }
+  };
+
+    // Delete Owner
+    export const deleteOwner = (id) => async (dispatch) => {
+      try {
+        dispatch({ type: DELETE_OWNER_REQUEST });
+    
+        const { data } = await axios.delete(`/api/v1/admin/owner/${id}`);
+    
+        dispatch({ type: DELETE_OWNER_SUCCESS, payload: data });
+      } catch (error) {
+        dispatch({
+          type: DELETE_OWNER_FAIL,
+          payload: error.response.data.message,
+        });
+      }
+    };
   
   // get  student Details
   export const getStudentDetails = (id) => async (dispatch) => {

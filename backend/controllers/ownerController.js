@@ -196,8 +196,11 @@ exports.updateoProfile = catchAsyncErrors(async (req, res, next) => {
 exports.getAllOwners = catchAsyncErrors(async (req, res, next) => {
   const owners = await Owner.find();
 
+  let ownerCount = owners.length;
+
   res.status(200).json({
     success: true,
+    ownerCount,
     owners,
   });
 });

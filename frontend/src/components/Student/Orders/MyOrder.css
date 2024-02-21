@@ -52,3 +52,39 @@
     margin-left: 20vw;
     padding: 10px;
 }
+
+.oc-tps{
+    margin-left: 55vw;
+}
+
+
+.oc-qnc{
+    width: 57vw;
+}
+
+@media screen and (max-width: 600px) {
+    .my-mc{
+        margin-left: 0vw;
+        margin-bottom: 10vh;
+    }
+
+    .oc-mc{
+        padding-left: 0px;
+        width: 85vw;
+
+    }
+
+    .oc-tps{
+        margin-left: 47vw;
+    }
+
+    .oc-item > *{
+        font-size: small;
+    }
+
+    .oc-dpc > *{
+        font-size: small;
+    }
+
+
+}

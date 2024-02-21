@@ -54,7 +54,8 @@ import {
       case ADMIN_ITEM_SUCCESS:
         return {
           loading: false,
-          items: action.payload,
+          itemsCount: action.payload.itemsCount,
+          items: action.payload.items,
         };
       case ALL_ITEM_FAIL:
       case ADMIN_ITEM_FAIL:

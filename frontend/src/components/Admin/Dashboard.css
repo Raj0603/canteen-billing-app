@@ -1,0 +1,44 @@
+.db-mc{
+    width: 80vw;
+    margin-left: 18vw;
+}
+
+.dc-mc{
+    height: 10vh;
+    width: 12vw;
+    background-color: #E74C3C;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: space-around;
+    padding: 10px;
+    box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+
+}
+
+.dc-fc{
+    display: flex;
+    justify-content: space-between;
+}
+
+.db-dcc{
+    display: flex;
+    justify-content: space-around;
+}
+
+.dc-ic{
+    color: white;
+}
+
+.db-gc{
+    width: 80vw;
+    /* border: 2px solid red; */
+    height: 60vh;
+    display: flex;
+    margin-top: 30px;
+}
+
+/* .db-gcl{
+    width: 35vw;
+} */

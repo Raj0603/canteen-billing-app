@@ -34,11 +34,11 @@ router.route("/password/update").put(isAuthenticated, updatePassword);
 router.route("/me/update").put(isAuthenticated, updateProfile);
 
 router
-  .route("/admin/users")
+  .route("/admin/students")
   .get(isAuthenticated, authorizeRoles("admin"), getAllStudents);
 
 router
-  .route("/admin/user/:id")
+  .route("/admin/student/:id")
   .get(isAuthenticated, authorizeRoles("admin"), getSingleStudent)
   .delete(isAuthenticated, authorizeRoles("admin"), deleteStudent);
 

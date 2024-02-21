@@ -60,3 +60,58 @@
     cursor: pointer;
 
 }
+
+@media screen and (max-width: 600px) {
+
+    .ec-mc{
+        margin-top: 24vh;
+        height: 42vh;
+        width: 75vw;
+        margin-left: 12vw;
+    }
+    
+
+    .ec-ci{
+        height: 18vh;
+    }
+
+    .ec-bb{
+        width: 45vw;
+        font-size: medium;
+        border-radius: 20px;
+    }
+
+    .ec-p{
+        font-size: large;
+        text-align: center;
+        color: #4B5563;
+    }
+
+    .cart-mc{
+        margin-left: 0px;
+        margin-bottom: 10vh
+    }
+
+    .cart-heading{
+        margin-left: 8vw
+    }
+
+    .cart-td{
+        width: 78vw;
+        margin-left: 4vw;
+    }
+
+    .cart-tt{
+        font-size: larger;
+        font-weight: bold;
+    }
+
+    .cart-cb, .cart-clb{
+        width: 35vw;
+        font-size: medium;
+    }
+
+    .cart-ts{
+        margin-left: 55vw;
+    }
+}

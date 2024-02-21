@@ -50,3 +50,44 @@
     margin-top: 20vh;
     
 }
+
+.ur-sgb{
+    width: 24vw;
+    height: 4vh;
+}
+
+@media screen and (max-width: 650px) {
+    .ur-li{
+        width: 50vw;
+        height: 20vh;
+    }
+
+    .ur-itx{
+        width: 78vw;
+        height: 4.5vh;
+        border-radius: 4px;
+    }
+    .ur-rb{
+        width: 83vw;
+        height: 5vh;
+        font-size: large;
+    }
+
+    .ul-mc{
+        margin-top: 17vh;
+    }
+
+    .ur-mc{
+        margin-top: 10vh;
+        height: 75vh;
+    }
+
+    .ur-sgb{
+        width: 83vw;
+        height: 5vh;
+    }
+
+    .ur-pem{
+        width: 83vw;
+    }
+}

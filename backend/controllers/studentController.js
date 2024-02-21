@@ -197,9 +197,12 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 exports.getAllStudents = catchAsyncErrors(async (req, res, next) => {
   const students = await Student.find();
 
+  let totalStudents = students.length;
+
   res.status(200).json({
     success: true,
     students,
+    totalStudents,
   });
 });
 
@@ -225,7 +228,6 @@ exports.getSingleStudent = catchAsyncErrors(async (req, res, next) => {
 exports.deleteStudent = catchAsyncErrors(async (req, res, next) => {
   const student = await Student.findById(req.params.id);
 
-
   if (!student) {
     return next(
       new ErrorHandler(`student does not exist with id ${req.params.id}`, 400)
@@ -236,6 +238,6 @@ exports.deleteStudent = catchAsyncErrors(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "student Deleted Successfully",
+    message: "Student Deleted Successfully",
   });
 });

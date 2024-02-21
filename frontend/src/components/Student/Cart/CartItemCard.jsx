@@ -15,9 +15,9 @@ const CartItemCard = ({ foodItem }) => {
   let icon = "";
 
   if (foodItem.type == "Veg") {
-    icon = <img src={vegImg} alt="" className="cic-ti"/>;
+    icon = <img src={vegImg} alt="" className="cic-ti" />;
   } else {
-    icon = <img src={nonVegImg} alt="" className="cic-ti"/>;
+    icon = <img src={nonVegImg} alt="" className="cic-ti" />;
   }
   const increaseQuantity = (id, quantity) => {
     const newQty = quantity + 1;
@@ -41,10 +41,10 @@ const CartItemCard = ({ foodItem }) => {
       <div className="cic-dc">
         <img src={foodItem.image} alt="" className="cic-img" />
       </div>
-      <div className="cic-dc">
+      <div className="cic-sc">
         <div className="cic-nt">
           <Link to={`/item/${foodItem.item}`}>
-            <span>{foodItem.name}</span>
+            <span style={{fontSize:"medium"}}>{foodItem.name}</span>
           </Link>
           {icon}
         </div>
@@ -68,9 +68,11 @@ const CartItemCard = ({ foodItem }) => {
             +
           </button>
         </div>
-        <p onClick={() => deleteCartItems(foodItem.item)}>Remove</p>
       </div>
-      <div className="cic-dc cic-tp">{foodItem.price * foodItem.quantity}</div>
+      <div className="cic-dc cic-tp">{foodItem.price * foodItem.quantity}
+      
+      <p onClick={() => deleteCartItems(foodItem.item)} style={{textDecoration:"underline",cursor:"pointer", fontSize:"small"}}>Remove</p>
+      </div>
     </div>
   );
 };

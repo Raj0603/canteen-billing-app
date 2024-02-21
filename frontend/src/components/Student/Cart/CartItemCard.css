@@ -1,51 +1,92 @@
-.cic-mc{
-    height: 20vh;
-    width: 60vw;
-    border: 2px solid black;
-    border-radius: 8px;
-    display: flex;
-    margin: 5px;
+.cic-mc {
+  height: 20vh;
+  width: 60vw;
+  border: 2px solid black;
+  border-radius: 8px;
+  display: flex;
+  margin: 5px;
 }
 
-.cic-img{
-    height: 15vh;
-    padding: 20px;
-    width: 7vw;
+.cic-img {
+  height: 15vh;
+  padding: 20px;
+  width: 7vw;
 }
 
-.cic-qty{
-    display: flex;
-    margin-top: 8px;
+.cic-qty {
+  display: flex;
+  margin-top: 8px;
 }
 
-.cic-dc{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.cic-dc, .cic-sc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.cic-tp{
-    padding-left: 37vw;
+.cic-sc{
+    width: 44vw;
 }
 
-.cic-qb{
-    height: 5vh;
-    width: 2.5vw;
-    background-color: white;
-    border: 0.5px solid black;
-    cursor: pointer;
+.cic-tp {
+  height: 8vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 6vh;
 }
 
-.cic-qn{
-    width: 2.5vw;
-    text-align: center;
+.cic-qb {
+  height: 5vh;
+  width: 2.5vw;
+  background-color: white;
+  border: 0.5px solid black;
+  cursor: pointer;
 }
 
-.cic-nt{
-    display: flex;
-    align-items: center;
+.cic-qn {
+  width: 2.5vw;
+  text-align: center;
 }
 
-.cic-ti{
-    margin-left: 5px;
+.cic-nt {
+  display: flex;
+  align-items: center;
+}
+
+.cic-ti {
+  margin-left: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .cic-mc {
+    width: 90vw;
+    margin-left: 4vw;
+    height: 12vh;
+  }
+
+  .cic-img {
+    height: 9vh;
+    padding: 15px;
+    width: 15vw;
+  }
+
+  .cic-tp{
+    margin-top: 2vh;
+  }
+
+  .cic-sc{
+    width: 50vw;
+  }
+
+  .cic-qb{
+    height: 3.5vh;
+    width: 8vw;
+  }
+
+  .cic-qn{
+    width: 8vw;
+  }
+
+
 }

@@ -8,9 +8,9 @@
   height: 43vh;
   width: 14vw;
   align-items: center;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);
+  box-shadow: 2px 2px 12px 2px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -26,39 +26,40 @@
   overflow: hidden;
 }
 
-.ic-lt{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 1.3vmax;
+.ic-lt {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 1.3vmax;
 }
 
-.ic-bn, .ic-atc{
-    width: 8vw;
-    /* margin: 0.25vw; */
-    height: 5vh;
-    border: none;
-    font-weight: bold;
-    /* border-radius: 5px; */
+.ic-bn,
+.ic-atc {
+  width: 8vw;
+  /* margin: 0.25vw; */
+  height: 5vh;
+  border: none;
+  font-weight: bold;
+  /* border-radius: 5px; */
 }
 
-.ic-ip{
-    color: black;
-    font-weight: bold;
-    font-size: medium;
+.ic-ip {
+  color: black;
+  font-weight: bold;
+  font-size: medium;
 }
 
-.ic-bn{
-    background-color: #CF2B2B;
-    color: white;
-    cursor: pointer;
+.ic-bn {
+  background-color: #cf2b2b;
+  color: white;
+  cursor: pointer;
 }
 
-.ic-atc{
-    background-color: white;
-    color: #CF2B2B;
-    border-top: 1px solid #CF2B2B;
-    cursor: pointer;
+.ic-atc {
+  background-color: white;
+  color: #cf2b2b;
+  border-top: 1px solid #cf2b2b;
+  cursor: pointer;
 }
 
 .ic-sd {
@@ -73,8 +74,62 @@
   color: black;
 }
 
-.ic-in{
-    color: black;
+.ic-in {
+  color: black;
+  font-size: large;
+  font-weight: bolder;
+}
+
+@media screen and (max-width: 600px) {
+  .itemCard {
+    background-color: white;
+    height: 13vh;
+    width: 100vw;
+    flex-direction: row;
+    box-shadow: none;
+  }
+
+
+  .ic-lmd {
+    width: 75vw;
+    padding-left: 20px;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .ic-mim {
+    width: 24vw;
+    height: 12vh;
+    border-radius: 4px;
+  }
+
+  .ic-matc {
+    position: absolute;
+    right: 9vw;
+    margin-top: 10vh;
+    border-radius: 4px;
+    height: 30px;
+    width: 50px;
+    color: #e74c3c;
+    border: 1px solid #bf360c;
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,207,202,1) 100%);
+  }
+
+  .ic-mip{
+    font-weight: bolder;
+  }
+
+  .ic-ni{
+    display: flex;
+    height: 4vh;
+    align-items: center;
+  }
+
+  .ic-min{
     font-size: large;
     font-weight: bolder;
+    margin-right: 5px;
+  }
 }

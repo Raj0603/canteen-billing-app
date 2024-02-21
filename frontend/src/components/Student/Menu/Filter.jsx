@@ -20,7 +20,7 @@ const Filter = () => {
       <form className="im-fib" onSubmit={searchSubmitHandler}>
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search Dishes"
           className="im-sbx"
           onKeyDown={(e) => {
             e.key === "Enter" ? setKeyword(e.target.value) : null;

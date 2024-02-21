@@ -95,9 +95,9 @@ const UserRegistration = () => {
       ) : (
         <div className="ur-mc">
           <img src={logo} alt="logo" className="ur-li" />
-          <h1>Register to Canteen</h1>
-          <p>
-            Do you have an existing account <Link to="/slogin">Login</Link>{" "}
+          <h2>Register to Canteen</h2>
+          <p style={{fontSize:"large"}}>
+            Do you have an existing account? <Link to="/slogin"><span style={{color:"blue", textDecoration:"underline", cursor:"pointer"}}>Login</span></Link>{" "}
           </p>
           <input
             type="text"
@@ -140,10 +140,11 @@ const UserRegistration = () => {
             onChange={studentRegisterDataChange}
           />
           <select
-            className="ur-itx"
+            className="ur-itx ur-sgb"
             required
             name="gender"
             value={gender}
+            
             onChange={studentRegisterDataChange}
           >
             <option value="" disabled>
@@ -153,9 +154,6 @@ const UserRegistration = () => {
             <option value="Female">Female</option>
             <option value="Other">Other</option>
           </select>
-          <p>
-            Forgot Password? <Link to="/forgotpassword">Reset</Link>
-          </p>
           <button className="ur-rb" onClick={handleRegistration}>
             Register
           </button>

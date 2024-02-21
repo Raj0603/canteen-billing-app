@@ -16,3 +16,14 @@
     cursor: pointer;
     font-size: larger
 }
+
+@media screen and (max-width: 650px) {
+    .os-vob{
+        width: 40vw;
+    }
+
+    .os-mc{
+        height: 60vh;
+        margin-top: 13vh;
+    }
+}

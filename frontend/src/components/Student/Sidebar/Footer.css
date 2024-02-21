@@ -1,0 +1,28 @@
+.footer-main{
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    
+    .footer-main{
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        height: 8vh;
+        width: 100vw;
+        background-color: white;
+        align-items: center;
+        justify-content: space-around;
+        z-index: 1000;
+    }
+
+    /* .fm-cd{
+        background-color: #E74C3C;
+        height: 1vmax;
+        width: 1vmax;
+        border-radius: 50px;
+        position: fixed;
+        left: 40vw;
+        bottom: 5.5vh;
+    } */
+}

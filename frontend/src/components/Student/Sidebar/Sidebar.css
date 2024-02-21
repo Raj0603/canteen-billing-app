@@ -31,3 +31,9 @@
 .ssb-li:active{
     color: black;
 }
+
+@media screen and (max-width: 600px) {
+    .ssb-main{
+        display: none;
+    }
+}

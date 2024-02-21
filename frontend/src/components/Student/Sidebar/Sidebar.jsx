@@ -1,13 +1,13 @@
-import React from 'react'
-import "./Sidebar.css"
-import {MenuSquare, ShoppingCart, BookOpen, User2, Settings, LogOut} from "lucide-react"
+import React from "react";
+import "./Sidebar.css";
+// import {MenuSquare, ShoppingCart, BookOpen, User2, Settings, LogOut} from "lucide-react"
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
     <>
-    <div className="ssb-main">
-        <ul className='ssb-ul'>
+      <div className="ssb-main">
+        <ul className="ssb-ul">
           <Link to="/menu">
             <li className="ssb-li">Menu</li>
           </Link>
@@ -17,15 +17,14 @@ const Sidebar = () => {
           <Link to="/myorders">
             <li className="ssb-li"> Orders</li>
           </Link>
-            <Link to="/saccount">
+          <Link to="/saccount">
             <li className="ssb-li">Profile</li>
-            </Link>
-            <li className="ssb-li">Setting</li>
-            
+          </Link>
+          <li className="ssb-li">Setting</li>
         </ul>
-    </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
