@@ -3,7 +3,7 @@ const app = express();
 const errorMiddleware = require('./middleware/error')
 const cookieParser = require("cookie-parser");
 const dotenv =require('dotenv');
-
+const path = require('path')
 
 //Config
 
@@ -34,6 +34,12 @@ app.use(errorMiddleware);
 
 app.get("/api/v1/getkey", (req, res) => {
     res.status(200).json({key: process.env.RAZORPAY_API_KEY})
+})
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")))
+
+app.get("*",(req,res)=>{
+    res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"))
 })
 
 module.exports = app;
