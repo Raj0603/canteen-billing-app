@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
@@ -25,10 +24,10 @@ const orderSchema = new mongoose.Schema({
         ref: "items",
         required: true,
       },
-      type:{
+      type: {
         type: String,
-        required: true
-      }
+        required: true,
+      },
     },
   ],
   student: {
@@ -36,22 +35,14 @@ const orderSchema = new mongoose.Schema({
     ref: "student",
     required: true,
   },
-  canteen:{
+  canteen: {
     type: String,
     // ref: "owners",
     required: true,
   },
-  paymentInfo: {
-    id: {
-      type: String,
-      required: true,
-      default:"cghfgchjf"
-    },
-    status: {
-      type: String,
-      required: true,
-      default:"Paid"
-    },
+  paymentId: {
+    type: String,
+    required: true,
   },
   paidAt: {
     type: Date,
@@ -69,4 +60,4 @@ const orderSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Order", orderSchema)
+module.exports = mongoose.model("Order", orderSchema);

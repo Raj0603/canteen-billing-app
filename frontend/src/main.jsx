@@ -24,3 +24,21 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </AlertProvider>
   </Provider>
 );
+
+
+// let emp={
+//   "employees": [{
+//           "name": "John",
+//           "salary": 50000
+//       }, {
+//           "name": "Alice",
+//           "salary": 60000
+//       }, {
+//           "name": "Bob",
+//           "salary": 70000
+//       }, {
+//           "name": "Emily",
+//           "salary": 55000
+//       }
+//   ]
+// }

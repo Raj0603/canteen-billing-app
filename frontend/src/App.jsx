@@ -42,18 +42,6 @@ function App() {
     }
   }, [location.pathname]);
 
-  // useEffect(() => {
-  //   function handleResize() {
-  //     if (window.innerWidth < 700 && !isAuthenticated) {
-  //       navigate('/slogin');
-  //     }
-  //   }
-
-  //   window.addEventListener('resize', handleResize);
-
-  //   return () => window.removeEventListener('resize', handleResize);
-  // }, [isAuthenticated, navigate]);
-
   return (
     <>
       <StudentNavbar />

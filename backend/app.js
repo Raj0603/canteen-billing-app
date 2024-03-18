@@ -20,14 +20,20 @@ const item = require("./routes/itemRoutes");
 const student = require("./routes/studentRoute");
 const owner = require("./routes/ownerRoutes");
 const order = require("./routes/orderRoutes");
+const payment = require("./routes/paymentRoutes");
 
 app.use("/api/v1",item);
 app.use("/api/v1",student);
 app.use("/api/v1",owner);
 app.use("/api/v1",order);
+app.use("/api/v1",payment);
 
 // Middleware for Errrors
 
 app.use(errorMiddleware);
+
+app.get("/api/v1/getkey", (req, res) => {
+    res.status(200).json({key: process.env.RAZORPAY_API_KEY})
+})
 
 module.exports = app;

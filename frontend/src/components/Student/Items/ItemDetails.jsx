@@ -223,7 +223,7 @@ const ItemDetails = () => {
                 <img className="id-im" src={item.image} alt="sample image" />
 
                 <span className="id-irc">
-                  <span className="id-irs">{item.rating}</span>{" "}
+                  <span className="id-irs">{item.rating && item.rating.toFixed(1)}</span>{" "}
                   <img src={Star} alt="" className="id-iis" />{" "}
                   <span className="id-inr">{item.numOfReviews}+ Ratings</span>
                 </span>

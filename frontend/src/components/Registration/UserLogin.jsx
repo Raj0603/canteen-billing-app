@@ -31,7 +31,7 @@ const UserLogin = () => {
       dispatch(clearErrors());
     }
     if (isAuthenticated) {
-      navigate("/");
+      navigate("/menu");
       window.location.reload();
     }
   }, [error, alert, dispatch, navigate, isAuthenticated]);
