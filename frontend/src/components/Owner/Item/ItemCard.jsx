@@ -25,7 +25,7 @@ const ItemCard = (props) => {
           className="items__image"
           // src={`https://source.unsplash.com/1600x900/?${props.name}`}
           src={props.image}
-          alt="tasty burger"
+          alt={props.name}
         />
         <button
           className="button button--primary items__button"

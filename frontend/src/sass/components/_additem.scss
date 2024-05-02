@@ -8,6 +8,7 @@
     margin-left: -1.6rem;
     padding: 1rem 3rem;
     text-transform: capitalize;
+    cursor: pointer;
   }
 
   &__form {
@@ -25,11 +26,11 @@
     margin-bottom: 2rem;
 
     &--1 {
-      flex: 0 0 15%;
+      flex: 0 0 12%;
     }
 
     &--2 {
-      flex: 0 0 15%;
+      flex: 0 0 12%;
     }
 
     &--3 {
@@ -44,11 +45,15 @@
     }
 
     &--4 {
-      flex: 0 0 15%;
+      flex: 0 0 12%;
     }
 
     &--5 {
-      flex: 0 0 15%;
+      flex: 0 0 12%;
+    }
+
+    &--6{
+      flex: 0 0 12%;
     }
   }
 

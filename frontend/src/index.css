@@ -163,7 +163,8 @@ body {
     margin: 2rem;
     margin-left: -1.6rem;
     padding: 1rem 3rem;
-    text-transform: capitalize; }
+    text-transform: capitalize;
+    cursor: pointer; }
   .add-item__form {
     margin: 1.5rem auto;
     flex: 0 1;
@@ -176,15 +177,17 @@ body {
     flex-direction: column;
     margin-bottom: 2rem; }
     .add-item__form-group--1 {
-      flex: 0 0 15%; }
+      flex: 0 0 12%; }
     .add-item__form-group--2 {
-      flex: 0 0 15%; }
+      flex: 0 0 12%; }
     .add-item__form-group--3 {
       flex: 0 0 40%; }
     .add-item__form-group--4 {
-      flex: 0 0 15%; }
+      flex: 0 0 12%; }
     .add-item__form-group--5 {
-      flex: 0 0 15%; }
+      flex: 0 0 12%; }
+    .add-item__form-group--6 {
+      flex: 0 0 12%; }
   .add-item__label {
     text-transform: capitalize; }
   .add-item__category {

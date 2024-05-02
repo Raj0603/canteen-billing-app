@@ -2,15 +2,12 @@ import "./App.css";
 import Home from "./components/Student/Home/Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ItemDetails from "./components/Student/Items/ItemDetails";
-import Sidebar from "./components/Student/Sidebar/Sidebar";
 import Menu from "./components/Student/Menu/Menu";
-import StudentNavbar from "./components/Student/StudentNavbar/StudentNavbar";
 import UserRegistration from "./components/Registration/UserRegistration";
 import UserLogin from "./components/Registration/UserLogin";
 import { useEffect } from "react";
 import Store from "./Store";
 import { loadStudent } from "./actions/studentAction";
-import { useSelector } from "react-redux";
 import StudentProfile from "./components/Student/Profile/StudentProfile";
 import ForgotPassword from "./components/Registration/ForgotPassword";
 import ResetPassword from "./components/Registration/ResetPassword";
@@ -21,7 +18,6 @@ import Dashboard from "./components/Admin/Dashboard";
 import OwnerList from "./components/Admin/OwnerList";
 import StudentList from "./components/Admin/StudentList";
 import OrderList from "./components/Admin/OrderList";
-import AdminSidebar from "./components/Admin/AdminSidebar";
 
 import { cheackAuthLoader, idLoader, logout as logoutAction } from './util/auth';
 import Items from "./components/Owner/Item/Items";
@@ -87,6 +83,10 @@ const router = createBrowserRouter([
         element: <Cart />
       },
       {
+        path: 'saccount',
+        element: <StudentProfile />
+      },
+      {
         path: 'oitems',
         element: <Items />,
       },
@@ -115,10 +115,6 @@ const router = createBrowserRouter([
     element: <UserLogin />
   },
   {
-    path: 'saccount',
-    element: <StudentProfile />
-  },
-  {
     path: 'forgotpassword',
     element: <ForgotPassword />
   },
@@ -138,8 +134,6 @@ const router = createBrowserRouter([
 ])
 
 function App() {
-  // const { isAuthenticated, student } = useSelector((state) => state.student);
-
   useEffect(() => {
     if (
       window.location.pathname !== "/menu" &&
@@ -153,9 +147,6 @@ function App() {
   
   return  <>
     <RouterProvider router={router}/>
-      {/* {isAuthenticated && student?.role === "student" && <Sidebar />} */}
-      {/* {isAuthenticated && student?.role === "student" && <Footer />} */}
-      {/* {isAuthenticated && student?.role === "admin" && <AdminSidebar />} */}
   </>
 }
 

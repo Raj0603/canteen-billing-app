@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import leftArrow from '../../../assets/SVG/left-arrow.svg';
 import useInput from '../../../hooks/useInput/use-input';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -10,13 +11,12 @@ const AddItem = () => {
   const itemId = searchParams.get('item-id');
 
   const ownerId = localStorage.getItem('id');
-
+  const [item, setItem] = useState(null);
   ///////////////////////////////////////////////////////////////////////////////////////
 
   const {
     value: enteredName,
     hasError: nameHasError,
-    reset: nameReset,
     isValueValid: isNameValid,
     blurHandler: nameBlurHandler,
     valueChangeHandler: nameChangeHandler,
@@ -25,7 +25,6 @@ const AddItem = () => {
   const {
     value: enteredPrice,
     hasError: priceHasError,
-    reset: priceReset,
     isValueValid: isPriceValid,
     blurHandler: priceBlurHandler,
     valueChangeHandler: priceChangeHandler,
@@ -36,7 +35,6 @@ const AddItem = () => {
   const {
     value: enteredDesc,
     hasError: descHasError,
-    reset: descReset,
     isValueValid: isDescValid,
     blurHandler: descBlurHandler,
     valueChangeHandler: descChangeHandler,
@@ -48,7 +46,30 @@ const AddItem = () => {
   const { value: enteredType, valueChangeHandler: typeChangeHandler } =
     useInput((type) => type.trim() !== '');
 
+  const {
+    value: enteredImage,
+    valueChangeHandler: imageChangeHandler,
+    blurHandler: imageBlurHandler,
+  } = useInput((image) => image.trim() !== '');
+
   ///////////////////////////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    async function getItem(id) {
+      try {
+        const response = await fetch(`/api/v1/item/${id}`);
+        if (!response) {
+          const data = await response.json();
+          throw new Error('error getting item: ' + data.message);
+        }
+        const data = await response.json();
+        setItem(data && data.item);
+      } catch (err) {
+        window.alert(err);
+      }
+    }
+    !isAdd && getItem(itemId);
+  }, [isAdd, itemId]);
+  //////////////////////////////////////////////////////////////////////////////////////
 
   const addItem = async (newItem) => {
     try {
@@ -73,7 +94,7 @@ const AddItem = () => {
     }
   };
 
-  const updateItem = async (newItem,itemId) => {
+  const updateItem = async (newItem, itemId) => {
     try {
       const response = await fetch(`/api/v1/item/${itemId}`, {
         method: 'put',
@@ -84,7 +105,7 @@ const AddItem = () => {
       });
 
       if (!response.ok) {
-        throw new Error('error adding new item!');
+        throw new Error('error updating!');
       }
 
       const data = await response.json();
@@ -97,28 +118,31 @@ const AddItem = () => {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    if (!isNameValid && !isPriceValid & !isDescValid) {
+    if (!isNameValid && !isPriceValid && !isDescValid && isAdd) {
+      window.alert('enter valid values');
       return;
     }
+
     const newItem = {
-      name: enteredName,
-      description: enteredDesc,
-      price: +enteredPrice,
-      category: enteredCategory,
-      type: enteredType,
+      name: enteredName || (item && item.name),
+      description: enteredDesc || (item && item.description),
+      price: +enteredPrice || (item && Number(item.price)),
+      category: enteredCategory || (item && item.category),
+      type: enteredType || (item && item.type),
       availability: true,
-      image: 'https://source.unsplash.com/1600x900/?' + enteredName
+      image: enteredImage || item && item.image.replace(/\s/g,'') || `https://source.unsplash.com/1600x900/?${enteredName.replace(/\s/g, '')}`, 
     };
 
-    const response = isAdd ? await addItem(newItem) : await updateItem(newItem,itemId);
+    const response = isAdd
+      ? await addItem(newItem)
+      : await updateItem(newItem, itemId);
 
     if (response) {
-      isAdd ? window.alert('item added successfully') : window.alert('item updated successfully');
+      isAdd
+        ? window.alert('item added successfully')
+        : window.alert('item updated successfully');
+      navigate('/oitems');
     }
-
-    nameReset();
-    priceReset();
-    descReset();
   };
 
   async function deleteHandler(itemId) {
@@ -130,6 +154,7 @@ const AddItem = () => {
         throw new Error('Error deleting item');
       }
       window.alert('item deleted');
+      navigate('/oitems');
     } catch (err) {
       window.alert(err);
     }
@@ -139,9 +164,9 @@ const AddItem = () => {
 
   return (
     <div className="add-item">
-      <div className="add-item__title" onClick={() => navigate('..')}>
+      <div className="add-item__title" onClick={() => navigate('/oitems')}>
         <div>
-          <img src={leftArrow} alt='<' />
+          <img src={leftArrow} alt="<" />
         </div>
         <h2 className="heading-secondary u-margin-left">
           {isAdd ? 'add new item' : 'edit item'}
@@ -163,7 +188,7 @@ const AddItem = () => {
               id="name"
               onBlur={nameBlurHandler}
               onChange={nameChangeHandler}
-              value={enteredName}
+              defaultValue={item && item.name}
             />
           </div>
 
@@ -179,9 +204,9 @@ const AddItem = () => {
               type="text"
               placeholder="enter item price"
               id="price"
-              value={enteredPrice}
               onChange={priceChangeHandler}
               onBlur={priceBlurHandler}
+              defaultValue={item && item.price}
             />
           </div>
 
@@ -198,9 +223,9 @@ const AddItem = () => {
               type="text"
               placeholder="enter item description"
               id="description"
-              value={enteredDesc}
               onChange={descChangeHandler}
               onBlur={descBlurHandler}
+              defaultValue={item && item.description}
             />
           </div>
 
@@ -209,50 +234,98 @@ const AddItem = () => {
               category
             </label>
             <div className="add-item__category">
-              <input
-                type="radio"
-                name="category"
-                onChange={categoryChangeHandler}
-                value="breakfast"
-                className="add-item__radio-input"
-                id="breakfast"
-              />
+              {item && item.category === 'breakfast' ? (
+                <input
+                  type="radio"
+                  name="category"
+                  onChange={categoryChangeHandler}
+                  value="breakfast"
+                  className="add-item__radio-input"
+                  id="breakfast"
+                  checked
+                />
+              ) : (
+                <input
+                  type="radio"
+                  name="category"
+                  onChange={categoryChangeHandler}
+                  value="breakfast"
+                  className="add-item__radio-input"
+                  id="breakfast"
+                />
+              )}
               <label htmlFor="breakfast" className="add-item__radio-label">
                 breakfast
               </label>
 
-              <input
-                type="radio"
-                name="category"
-                onChange={categoryChangeHandler}
-                value="lunch"
-                className="add-item__radio-input"
-                id="lunch"
-              />
+              {item && item.category === 'lunch' ? (
+                <input
+                  type="radio"
+                  name="category"
+                  onChange={categoryChangeHandler}
+                  value="lunch"
+                  className="add-item__radio-input"
+                  id="lunch"
+                  checked
+                />
+              ) : (
+                <input
+                  type="radio"
+                  name="category"
+                  onChange={categoryChangeHandler}
+                  value="lunch"
+                  className="add-item__radio-input"
+                  id="lunch"
+                />
+              )}
               <label htmlFor="lunch" className="add-item__radio-label">
                 lunch
               </label>
 
-              <input
-                type="radio"
-                name="category"
-                onChange={categoryChangeHandler}
-                value="snacks"
-                className="add-item__radio-input"
-                id="snacks"
-              />
+              {item && item.category === 'snacks' ? (
+                <input
+                  type="radio"
+                  name="category"
+                  onChange={categoryChangeHandler}
+                  value="snacks"
+                  className="add-item__radio-input"
+                  id="snacks"
+                  checked
+                />
+              ) : (
+                <input
+                  type="radio"
+                  name="category"
+                  onChange={categoryChangeHandler}
+                  value="snacks"
+                  className="add-item__radio-input"
+                  id="snacks"
+                />
+              )}
               <label htmlFor="snacks" className="add-item__radio-label">
                 snacks
               </label>
 
-              <input
-                type="radio"
-                name="category"
-                onChange={categoryChangeHandler}
-                value="dinner"
-                className="add-item__radio-input"
-                id="dinner"
-              />
+              {item && item.category === 'dinner' ? (
+                <input
+                  type="radio"
+                  name="category"
+                  onChange={categoryChangeHandler}
+                  value="dinner"
+                  className="add-item__radio-input"
+                  id="dinner"
+                  checked
+                />
+              ) : (
+                <input
+                  type="radio"
+                  name="category"
+                  onChange={categoryChangeHandler}
+                  value="dinner"
+                  className="add-item__radio-input"
+                  id="dinner"
+                />
+              )}
               <label htmlFor="dinner" className="add-item__radio-label">
                 dinner
               </label>
@@ -264,30 +337,74 @@ const AddItem = () => {
               type
             </label>
             <div className="add-item__category">
-              <input
-                type="radio"
-                name="type"
-                onChange={typeChangeHandler}
-                value="veg"
-                className="add-item__radio-input"
-                id="veg"
-              />
+              {item && item.type === 'veg' ? (
+                <input
+                  type="radio"
+                  name="type"
+                  onChange={typeChangeHandler}
+                  value="veg"
+                  className="add-item__radio-input"
+                  id="veg"
+                  checked
+                />
+              ) : (
+                <input
+                  type="radio"
+                  name="type"
+                  onChange={typeChangeHandler}
+                  value="veg"
+                  className="add-item__radio-input"
+                  id="veg"
+                />
+              )}
               <label htmlFor="veg" className="add-item__radio-label">
                 veg
               </label>
 
-              <input
-                type="radio"
-                name="type"
-                onChange={typeChangeHandler}
-                value="non-veg"
-                className="add-item__radio-input"
-                id="non-veg"
-              />
+              {item && item.type === 'non-veg' ? (
+                <input
+                  type="radio"
+                  name="type"
+                  onChange={typeChangeHandler}
+                  value="non-veg"
+                  className="add-item__radio-input"
+                  id="non-veg"
+                  checked
+                />
+              ) : (
+                <input
+                  type="radio"
+                  name="type"
+                  onChange={typeChangeHandler}
+                  value="non-veg"
+                  className="add-item__radio-input"
+                  id="non-veg"
+                />
+              )}
               <label htmlFor="non-veg" className="add-item__radio-label">
                 non-veg
               </label>
             </div>
+          </div>
+
+          <div className="add-item__form-group add-item__form-group--6">
+            <label
+              className="add-item__label heading-secondary u-margin-bottom"
+              htmlFor="image"
+            >
+              image
+            </label>
+            <input
+              className={descHasError ? 'input--error' : 'input'}
+              type="file"
+              accept="image/*"
+              multiple="false"
+              placeholder="please select image"
+              id="image"
+              onChange={imageChangeHandler}
+              onBlur={imageBlurHandler}
+              defaultValue={item && item.image}
+            />
           </div>
 
           <button

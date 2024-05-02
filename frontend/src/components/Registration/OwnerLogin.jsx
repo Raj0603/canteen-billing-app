@@ -1,6 +1,6 @@
+import { Link, useNavigate } from 'react-router-dom';
 import loginpic from '../../assets/SVG/loginpic.svg';
 import useInput from '../../hooks/useInput/use-input';
-import { Link, useNavigate } from 'react-router-dom';
 
 const OwnerLogin = () => {
   const navigate = useNavigate();
@@ -67,7 +67,7 @@ const OwnerLogin = () => {
       emailReset();
       passwordReset();
 
-      navigate('/odashboard');
+      navigate('/oitems');
     }
   };
 
