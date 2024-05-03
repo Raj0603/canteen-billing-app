@@ -297,7 +297,7 @@ body {
   border-radius: 3px; }
   @media (min-width: 600px) {
     .order {
-      width: 100%;
+      width: 98%;
       border: 1px solid var(--black-color); } }
   .order:last-child {
     margin-bottom: 5rem; }

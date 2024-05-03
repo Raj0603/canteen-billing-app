@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { getAuthId } from '../../../util/auth';
+import { useLoaderData } from 'react-router-dom';
 import findBestDish from './find-best-dish';
 import DashboardCard from './DashboardCard';
 import dollarCoin from '../../../assets/SVG/dollar-coin.svg';
@@ -7,27 +6,14 @@ import cart from '../../../assets/SVG/Cart.svg';
 import fork from '../../../assets/SVG/Fork.svg';
 import Order from './Order';
 import OrderCard from './OrderCard';
+import Loading from '../../Loading/Loading';
 
 const OwnerDashboard = () => {
-  const [data, setData] = useState(null);
-  const id = getAuthId();
 
-  useEffect(() => {
-    async function getData() {
-      try {
-        const response = await fetch('/api/v1/orders/' + id);
-        const respData = await response.json();
-        setData(respData);
-      } catch (err) {
-        console.error('error fetching order', err);
-      }
-    }
-
-    getData();
-  }, [id]);
+  const data = useLoaderData();
 
   const statusChangeHandler = async (status,id) => {
-    const data = {status:status};
+    const data = {orderStatus:status};
     try{
       const response = await fetch('/api/v1/owner/orders/'+id,{
         method: 'PUT',
@@ -40,8 +26,7 @@ const OwnerDashboard = () => {
       }
 
       const resData = await response.json();
-      console.log(resData);
-      window.alert('served');
+      return resData.sucess;
 
     }catch(err){
       window.alert(err.message);
@@ -49,15 +34,15 @@ const OwnerDashboard = () => {
   }
 
   const amount = data && data.totalAmount;
-  const totalOrders = data && data.orders.length;
-  const orders = (data && data.orders) || [];
-  const bestDish = findBestDish(orders);
+  const totalOrders = data && data.totalOrders;
+  const orders = data && data.orders;
+  const bestDish = data && findBestDish(orders);
 
   return (
     <section className="owner-dashboard">
       <h1 className="heading-primary owner-dashboard__title">dashboard</h1>
-
-      <div className="card-holder">
+     {data ? <> 
+     <div className="card-holder">
         <DashboardCard title="total revenue" content={amount}>
           <img src={dollarCoin} alt='currency symbol' />
         </DashboardCard>
@@ -73,9 +58,10 @@ const OwnerDashboard = () => {
         <h1 className="heading-primary owner-dashboard__title">orders</h1>
         <ul>
           <li>
-            {orders.map((order) => {
-              const paymentStatus = order.paymentInfo.status;
+            {totalOrders === 0 ? <p>you have no orders</p>
+            :orders.map((order) => {
               const orderStatus = order.orderStatus;
+              const paymentStatus = order.paidAt;
               const totalPrice = order.totalPrice;
               const orderId = order._id;
               return (
@@ -92,10 +78,13 @@ const OwnerDashboard = () => {
                   })}
                 </Order>
               );
-            })}
+            })
+          }
           </li>
         </ul>
       </div>
+      </>: <Loading />
+}
     </section>
   );
 };

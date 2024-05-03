@@ -1,11 +1,11 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useEffect } from "react";
 import "./App.css";
 import Home from "./components/Student/Home/Home";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ItemDetails from "./components/Student/Items/ItemDetails";
 import Menu from "./components/Student/Menu/Menu";
 import UserRegistration from "./components/Registration/UserRegistration";
 import UserLogin from "./components/Registration/UserLogin";
-import { useEffect } from "react";
 import Store from "./Store";
 import { loadStudent } from "./actions/studentAction";
 import StudentProfile from "./components/Student/Profile/StudentProfile";
@@ -19,7 +19,7 @@ import OwnerList from "./components/Admin/OwnerList";
 import StudentList from "./components/Admin/StudentList";
 import OrderList from "./components/Admin/OrderList";
 
-import { cheackAuthLoader, idLoader, logout as logoutAction } from './util/auth';
+import { cheackAuthLoader,dashboardLoader, idLoader, logout as logoutAction } from './util/auth';
 import Items from "./components/Owner/Item/Items";
 import OwnerRegister from "./components/Registration/OwnerRegistration";
 import OwnerLogin from "./components/Registration/OwnerLogin";
@@ -27,6 +27,8 @@ import OwnerDashboard from "./components/Owner/Dashboard/OwnerDashboard";
 import Profile from "./components/Owner/Profile/Profile";
 import Navigation from "./components/Navigation/Navigation";
 import AddItem from "./components/Owner/Item/AddItem";
+
+
 
 const router = createBrowserRouter([
   {
@@ -93,7 +95,7 @@ const router = createBrowserRouter([
       {
         path: 'odashboard',
         element: <OwnerDashboard />,
-        loader: cheackAuthLoader,
+        loader: dashboardLoader,
       },
       {
         path: 'oprofile',
